@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["49CQA5YX6U.com.gallowsway.game"],
+        "components": [
+          {
+            "/": "/*"
+          }
+        ]
+      }
+    ]
+  },
+  "appclips": {
+    "apps": ["49CQA5YX6U.com.gallowsway.game.Clip"]
+  }
+}
