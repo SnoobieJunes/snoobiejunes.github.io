@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-itunes-app"
+      content="app-id=6761637905, app-clip-bundle-id=com.gallowsway.game.Clip">
+<title>The Gallows Way — Join Game</title>
+<style>
+  body{font-family:-apple-system,system-ui,sans-serif;max-width:520px;margin:48px auto;padding:0 16px;text-align:center;color:#111}
+  h1{font-size:28px;margin:24px 0 8px}
+  p{color:#444;line-height:1.45}
+  a.cta{display:inline-block;margin-top:24px;padding:14px 24px;background:#000;color:#fff;border-radius:12px;text-decoration:none;font-weight:600}
+  .hint{font-size:13px;color:#888;margin-top:32px}
+</style>
+</head>
+<body>
+  <h1>You've been invited to Play The Gallows Way!</h1>
+  <p>A card game of wit and strategy</p>
+  <a class="cta" href="https://apps.apple.com/app/id/6761637905">Get The Gallows Way</a>
+  <p class="hint">Already installed? Tap the link again from Messages.</p>
+  <script>
+    // Preserve the invite payload across the App Store roundtrip via clipboard fallback.
+    // After install, the universal-link handler in the full app will receive this URL.
+    try { navigator.clipboard?.writeText(location.href); } catch(_) {}
+  </script>
+</body>
+</html>
