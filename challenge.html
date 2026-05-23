@@ -22,6 +22,8 @@
   <script>
     // Preserve the invite payload across the App Store roundtrip via clipboard fallback.
     // After install, the universal-link handler in the full app will receive this URL.
+    // iOS 17 caveat: clipboard permission may be denied if the app is not yet installed.
+    // Silent failures are acceptable here — the universal link will still work via deeplink.
     try { navigator.clipboard?.writeText(location.href); } catch(_) {}
   </script>
 </body>
