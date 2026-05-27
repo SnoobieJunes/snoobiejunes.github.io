@@ -2,16 +2,22 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["49CQA5YX6U.com.gallowsway.game"],
+        "appIDs": [
+          "49CQA5YX6U.com.gallowsway.game",
+          "49CQA5YX6U.com.gallowsway.game.Clip"
+        ],
         "components": [
           {
-            "/": "/*"
+            "/": "/challenge",
+            "comment": "Game Center challenge handoff"
           }
         ]
       }
     ]
   },
   "appclips": {
-    "apps": ["49CQA5YX6U.com.gallowsway.game.Clip"]
+    "apps": [
+      "49CQA5YX6U.com.gallowsway.game.Clip"
+    ]
   }
 }
