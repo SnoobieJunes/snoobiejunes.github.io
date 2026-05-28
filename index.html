@@ -1,5 +1,522 @@
 <!DOCTYPE html>
-<html>
-<head><title>The Gallows Way</title></head>
-<body></body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gallows Way App Clip Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 40px;
+            font-size: 0.95em;
+        }
+
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            perspective: 1000px;
+        }
+
+        .flow-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-section:hover {
+            border-color: rgba(255, 215, 0, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .flow-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
+
+        .phase-label {
+            display: inline-block;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .phase-inviter { background: rgba(100, 150, 255, 0.3); color: #64b3ff; }
+        .phase-setup { background: rgba(255, 150, 100, 0.3); color: #ff9664; }
+        .phase-game { background: rgba(100, 200, 150, 0.3); color: #64c896; }
+        .phase-funnel { background: rgba(200, 100, 255, 0.3); color: #c864ff; }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .description {
+            color: #ccc;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #FFD700;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #90ee90;
+            overflow-x: auto;
+        }
+
+        .key-point {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid #FFD700;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 4px;
+            color: #FFD700;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 1.8em;
+            color: #FFD700;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .constraint {
+            background: rgba(255, 100, 100, 0.15);
+            border-left: 3px solid #ff6464;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 4px;
+            color: #ffb3b3;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+
+        .decision {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px dashed #FFD700;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 4px;
+            color: #FFE066;
+            font-size: 0.9em;
+        }
+
+        .success {
+            background: rgba(100, 200, 150, 0.15);
+            border-left: 3px solid #64c896;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 4px;
+            color: #90e0af;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .flow-container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .legend {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-title {
+            color: #FFD700;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ccc;
+            font-size: 0.85em;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .color-inviter { background: rgba(100, 150, 255, 0.4); }
+        .color-setup { background: rgba(255, 150, 100, 0.4); }
+        .color-game { background: rgba(100, 200, 150, 0.4); }
+        .color-funnel { background: rgba(200, 100, 255, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 The Gallows Way App Clip Flow</h1>
+        <p class="subtitle">From challenge link to full game installation</p>
+
+        <div class="flow-container">
+            <!-- Step 1: Inviter -->
+            <div class="flow-section">
+                <span class="phase-label phase-inviter">INVITER (Full App)</span>
+                <div class="step-number">1</div>
+                <h2>Generate Challenge Link</h2>
+                <div class="description">
+                    Player in the full app taps "Online" → "Challenge a Friend" → generates a shareable link with their Game Center ID.
+                </div>
+                <div class="code-snippet">
+https://snoobiejunes.github.io/challenge?from=GPID&name=Alice
+                </div>
+                <div class="key-point">
+                    ✓ Link contains inviter's own gamePlayerID, not a new ID
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 2: Recipient taps link -->
+            <div class="flow-section">
+                <span class="phase-label phase-setup">RECIPIENT (App Clip)</span>
+                <div class="step-number">2</div>
+                <h2>Tap Challenge Link</h2>
+                <div class="description">
+                    Friend receives the universal link and taps it. iOS launches the App Clip with the URL parsed into a ClipChallenge object.
+                </div>
+                <div class="code-snippet">
+handleChallengeURL(url)
+→ ClipChallenge(
+    inviterGamePlayerID: "...",
+    inviterName: "Alice"
+)
+                </div>
+                <div class="key-point">
+                    ✓ App Clip launches with no Game Center auth yet
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 3: Welcome screen -->
+            <div class="flow-section">
+                <span class="phase-label phase-setup">RECIPIENT (App Clip)</span>
+                <div class="step-number">3</div>
+                <h2>ClipWelcomeView</h2>
+                <div class="description">
+                    Shows challenger's name ("Alice challenged you to a game") and an "Accept Challenge" button. A 30-second watchdog guards against iOS 26 auth regression.
+                </div>
+                <div class="code-snippet">
+User taps "Sign In & Play"
+→ GameKitManager.authenticate()
+                </div>
+                <div class="key-point">
+                    ✓ 30s watchdog prevents auth handler timeout
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 4: Auth complete -->
+            <div class="flow-section">
+                <span class="phase-label phase-setup">RECIPIENT (App Clip)</span>
+                <div class="step-number">4</div>
+                <h2>Game Center Auth</h2>
+                <div class="description">
+                    User signs in with Apple ID. isAuthenticated flips to true, which triggers the accept logic.
+                </div>
+                <div class="key-point">
+                    ⚠️ CRITICAL: User must be signed into Game Center. No custom account needed.
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 5: Check for existing match -->
+            <div class="flow-section">
+                <span class="phase-label phase-setup">RECIPIENT (App Clip)</span>
+                <div class="step-number">5</div>
+                <h2>One-Match-Per-Pair Check</h2>
+                <div class="description">
+                    Before creating a new match, check if a match already exists with this inviter. If found, adopt it instead (prevents duplicates).
+                </div>
+                <div class="code-snippet">
+adoptExistingMatch(
+    withGamePlayerID: inviter_gpid
+)
+                </div>
+                <div class="key-point">
+                    ✓ Tapping the same link twice resumes, not creates duplicate
+                </div>
+                <div class="decision">
+                    Match exists? → YES: Skip to Step 9 (resume)
+                    <br/>Match exists? → NO: Continue to Step 6 (create new)
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 6: Create match -->
+            <div class="flow-section">
+                <span class="phase-label phase-setup">RECIPIENT (App Clip)</span>
+                <div class="step-number">6</div>
+                <h2>Create Challenge Match</h2>
+                <div class="description">
+                    Create a new GKTurnBasedMatch with minPlayers=2, maxPlayers=2 (strictly 1v1). The recipient is automatically the currentParticipant (host).
+                </div>
+                <div class="code-snippet">
+createChallengeMatch(
+    invitingGamePlayerID: gpid
+)
+→ GKTurnBasedMatch created
+→ Recipient is HOST
+                </div>
+                <div class="key-point">
+                    ✓ Recipient becomes the HOST, not the guest
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 7: Host deals -->
+            <div class="flow-section">
+                <span class="phase-label phase-game">GAME START</span>
+                <div class="step-number">7</div>
+                <h2>Host Deals Immediately</h2>
+                <div class="description">
+                    No pre-game lobby or "ready" screen. The host (recipient) immediately builds GameState from match.participants and deals cards.
+                </div>
+                <div class="code-snippet">
+state.startLocalGame()
+→ Deck shuffled
+→ Cards dealt
+                </div>
+                <div class="key-point">
+                    ✓ This is the critical GameKit pattern: deal first, no lobby
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 8: Host ends turn (THE MAGIC) -->
+            <div class="flow-section">
+                <span class="phase-label phase-game">GAME START</span>
+                <div class="step-number">8</div>
+                <h2>Host Ends Turn to Inviter</h2>
+                <div class="description">
+                    Host sends their game snapshot and ends their turn, making the inviter the currentParticipant. <strong>This is what delivers the push notification.</strong>
+                </div>
+                <div class="code-snippet">
+gameKitManager.send(snapshot)
+→ match.endTurn(
+    withNextParticipants: [inviter]
+)
+                </div>
+                <div class="constraint">
+                    🎯 GAMEKIT CONSTRAINT (bug #27):
+                    <br/>Invitations are ONLY delivered when the invited player becomes currentParticipant.
+                </div>
+                <div class="key-point">
+                    ✓ Inviter's device receives push notification now
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 9: Inviter receives push -->
+            <div class="flow-section">
+                <span class="phase-label phase-inviter">INVITER (Full App)</span>
+                <div class="step-number">9</div>
+                <h2>Push Notification Arrives</h2>
+                <div class="description">
+                    Inviter's device receives the "It's your turn in The Gallows Way" push notification. Tapping it opens the full app with the match loaded.
+                </div>
+                <div class="success">
+                    ✓ Inviter joins the match as guest
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 10: Game plays out -->
+            <div class="flow-section">
+                <span class="phase-label phase-game">GAME IN PROGRESS</span>
+                <div class="step-number">10</div>
+                <h2>Turn-Based Gameplay</h2>
+                <div class="description">
+                    Both players take turns. The host's snapshot is the single source of truth. Each endTurn rotates to the next player's device. Uses the shared GameView and full game engine.
+                </div>
+                <div class="key-point">
+                    ✓ Clip user experiences the REAL game, not a demo
+                </div>
+                <div class="success">
+                    ✓ Game recorded in Game Center history
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 11: Game over -->
+            <div class="flow-section">
+                <span class="phase-label phase-funnel">INSTALL FUNNEL</span>
+                <div class="step-number">11</div>
+                <h2>Game Reaches Conclusion</h2>
+                <div class="description">
+                    When gameState.phase == .gameOver, the ClipRouterView swaps from GameView to ClipInstallFunnelView.
+                </div>
+                <div class="code-snippet">
+if phase == .gameOver
+  → ClipInstallFunnelView
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 12: Install funnel -->
+            <div class="flow-section">
+                <span class="phase-label phase-funnel">INSTALL FUNNEL</span>
+                <div class="step-number">12</div>
+                <h2>Result Screen + SKOverlay</h2>
+                <div class="description">
+                    Shows the final score and result (win/loss), then presents Apple's SKOverlay install card. The message explains the match is saved in Game Center history.
+                </div>
+                <div class="key-point">
+                    ✓ Match persists even if user doesn't install
+                </div>
+                <div class="success">
+                    ✓ If user installs later with same Apple ID, match appears in history
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <!-- Step 13: User decision -->
+            <div class="flow-section">
+                <span class="phase-label phase-funnel">INSTALL FUNNEL</span>
+                <div class="step-number">13</div>
+                <h2>User Chooses</h2>
+                <div class="description">
+                    User either installs the full app (taps "Get The Gallows Way") or declines (taps "No thanks" → "Thanks for playing" message).
+                </div>
+                <div class="decision">
+                    Install app? → YES: Full app opens, user continues
+                    <br/>Install app? → NO: Thanks message + option to install later
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-title">Legend</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color color-inviter"></div>
+                    <span>Inviter actions (Full app)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-setup"></div>
+                    <span>Setup phase (App Clip auth & match creation)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-game"></div>
+                    <span>Game in progress (Shared game engine)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-funnel"></div>
+                    <span>Install funnel (Result → SKOverlay)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="legend" style="margin-top: 30px;">
+            <div class="legend-title">🔑 Key Insights</div>
+            <div style="color: #ccc; line-height: 1.8; font-size: 0.9em;">
+                <p style="margin-bottom: 12px;"><strong>1. Recipient becomes host:</strong> The person tapping the link is NOT the guest—they're the host who deals first. This flips the typical invite pattern.</p>
+                <p style="margin-bottom: 12px;"><strong>2. Push delivery is the bottleneck:</strong> GameKit only sends invites when the invitee becomes currentParticipant. The host's endTurn is what triggers the notification.</p>
+                <p style="margin-bottom: 12px;"><strong>3. No pre-game lobby:</strong> There's no "wait for everyone to be ready." The host deals immediately. This is a feature, not a limitation—it respects the GameKit constraint.</p>
+                <p style="margin-bottom: 12px;"><strong>4. Real game in 15MB:</strong> The clip runs the full game engine, not a trivial demo. Users get to experience the real card game mechanics.</p>
+                <p style="margin-bottom: 12px;"><strong>5. Persistence across installs:</strong> Because it's a real GKTurnBasedMatch, the game is recorded in Game Center. If the user installs the full app later with the same Apple ID, the match is waiting for them.</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
