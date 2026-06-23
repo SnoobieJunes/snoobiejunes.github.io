@@ -2,23 +2,103 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- CRITICAL: this meta tag triggers the App Clip card / Smart App Banner on
+     iOS Safari. Do NOT remove or change the app-id / app-clip-bundle-id. -->
 <meta name="apple-itunes-app"
       content="app-id=6761637905, app-clip-bundle-id=com.gallowsway.game.Clip">
-<title>The Gallows Way — Join Game</title>
+<meta name="theme-color" content="#16213e">
+<title>The Gallows Way — You've Been Challenged</title>
 <style>
-  body{font-family:-apple-system,system-ui,sans-serif;max-width:520px;margin:48px auto;padding:0 16px;text-align:center;color:#111}
-  h1{font-size:28px;margin:24px 0 8px}
-  p{color:#444;line-height:1.45}
-  a.cta{display:inline-block;margin-top:24px;padding:14px 24px;background:#000;color:#fff;border-radius:12px;text-decoration:none;font-weight:600}
-  .hint{font-size:13px;color:#888;margin-top:32px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    background:linear-gradient(160deg,#1a1a2e 0%,#16213e 60%,#0f1626 100%);
+    color:#f4f4f8;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:32px 20px calc(32px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;max-width:440px;text-align:center;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,215,0,0.18);
+    border-radius:22px;padding:36px 26px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+  }
+  .suit{font-size:46px;letter-spacing:6px;margin-bottom:6px}
+  .kicker{
+    text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:700;
+    color:#FFD700;margin-bottom:14px;
+  }
+  h1{font-size:25px;line-height:1.25;margin-bottom:10px;font-weight:800}
+  .tagline{color:#b9c0d4;font-size:15px;line-height:1.5;margin-bottom:22px}
+  .badge{
+    display:inline-block;font-size:12.5px;font-weight:700;color:#7CFFB2;
+    background:rgba(100,200,150,0.12);border:1px solid rgba(100,200,150,0.3);
+    border-radius:999px;padding:6px 14px;margin-bottom:24px;
+  }
+  .steps{text-align:left;margin:0 auto 26px;max-width:340px}
+  .step{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .step .n{
+    flex:0 0 26px;height:26px;border-radius:50%;
+    background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a1a2e;
+    font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;
+  }
+  .step .t{font-size:14px;line-height:1.45;color:#dfe3ee;padding-top:3px}
+  .step .t b{color:#fff}
+  a.cta{
+    display:block;width:100%;padding:16px;border-radius:14px;
+    background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a1a2e;
+    text-decoration:none;font-weight:800;font-size:16px;
+    box-shadow:0 8px 22px rgba(255,170,0,0.3);
+  }
+  a.cta:active{transform:translateY(1px)}
+  .hint{font-size:12.5px;color:#8b93a9;margin-top:18px;line-height:1.5}
+  .footer{margin-top:26px;font-size:11px;color:#5f6781}
+  .footer a{color:#8b93a9}
 </style>
 </head>
 <body>
-  <h1>You've been invited to Play The Gallows Way!</h1>
-  <p>A card game of wit and strategy</p>
-  <a class="cta" href="https://apps.apple.com/app/id/6761637905">Get The Gallows Way</a>
-  <p class="hint">Already installed? Tap the link again from Messages.</p>
+  <main class="card">
+    <div class="suit">♠&#xfe0e; ♥&#xfe0e; ♣&#xfe0e; ♦&#xfe0e;</div>
+    <div class="kicker">You've been challenged</div>
+    <h1>Play The Gallows Way</h1>
+    <p class="tagline">
+      A family card game of wit, runs, and wild cards — race your friend to 5,000 points.
+    </p>
+    <div class="badge">✓ No purchase required to play this match</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <div class="t">Open this link on your <b>iPhone</b> (tap it from Messages, not a desktop browser).</div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div class="t">Tap the <b>App Clip card</b> that slides up to play instantly — no full download.</div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div class="t">Sign in with <b>Game Center</b> and your match begins right away.</div>
+      </div>
+    </div>
+
+    <a class="cta" href="https://apps.apple.com/app/id6761637905">Get The Gallows Way</a>
+
+    <p class="hint">
+      Don't see the App Clip card? Tap the button above to get the full game,
+      then reopen this invite link.<br>
+      Already have it installed? Tap the link again from Messages.
+    </p>
+
+    <div class="footer">
+      Inspired by Celtic &amp; Norse heritage, the Gall-Ghàidhealaibh ·
+      <a href="https://snoobiejunes.github.io/privacy.html">Privacy</a>
+    </div>
+  </main>
+
   <script>
     // Preserve the invite payload across the App Store roundtrip via clipboard fallback.
     // After install, the universal-link handler in the full app will receive this URL.
