@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16213e">
+<meta name="description" content="Support and FAQ for The Gallows Way — a family card game for iPhone. Contact, troubleshooting, and answers to common questions.">
+<title>Support — The Gallows Way</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#FFD700;--gold2:#FFA500}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    background:linear-gradient(160deg,#1a1a2e 0%,#16213e 55%,#0f1626 100%);
+    color:#f4f4f8;min-height:100vh;-webkit-font-smoothing:antialiased;
+    padding:0 20px calc(48px + env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  header{text-align:center;padding:56px 0 30px}
+  .suit{font-size:34px;letter-spacing:7px;margin-bottom:12px}
+  h1{font-size:34px;font-weight:850;line-height:1.1;margin-bottom:10px}
+  .lede{color:#c2c8da;font-size:17px;line-height:1.55;max-width:520px;margin:0 auto}
+
+  .contact{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;margin:8px 0 36px;
+  }
+  a.card{
+    display:block;text-decoration:none;color:inherit;
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,215,0,0.18);
+    border-radius:16px;padding:20px;transition:border-color .2s,background .2s;
+  }
+  a.card:hover{border-color:rgba(255,215,0,0.45);background:rgba(255,255,255,0.08)}
+  a.card .t{font-weight:800;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  a.card .d{color:#b9c0d4;font-size:14px;line-height:1.45}
+  a.card .d b{color:#FFD700;font-weight:700}
+
+  h2{font-size:20px;margin:34px 0 16px;color:#fff}
+  .faq{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;margin-bottom:12px;overflow:hidden;
+  }
+  .faq summary{
+    cursor:pointer;list-style:none;padding:16px 18px;font-weight:700;font-size:15.5px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--gold);font-size:20px;font-weight:700}
+  .faq[open] summary::after{content:"–"}
+  .faq .body{padding:0 18px 18px;color:#c5cbdc;font-size:14.5px;line-height:1.6}
+  .faq .body b{color:#eef1f8}
+  .faq .body a{color:var(--gold)}
+
+  footer{text-align:center;margin-top:44px;font-size:12.5px;color:#6b7287;line-height:1.9}
+  footer a{color:#9aa2b8;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:520px){h1{font-size:28px}.lede{font-size:15px}header{padding:42px 0 24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="suit">♠&#xfe0e; ♥&#xfe0e; ♣&#xfe0e; ♦&#xfe0e;</div>
+    <h1>Support</h1>
+    <p class="lede">Questions, bugs, or feedback about The Gallows Way? We're a small family project and we read everything.</p>
+  </header>
+
+  <div class="contact">
+    <a class="card" href="mailto:bugs@auston.org?subject=The%20Gallows%20Way%20Support">
+      <div class="t">✉️ Email Support</div>
+      <div class="d"><b>bugs@auston.org</b><br>Best for bugs, account/match issues, and questions. We aim to reply within a few days.</div>
+    </a>
+    <a class="card" href="https://snoobiejunes.github.io/privacy.html">
+      <div class="t">🔒 Privacy Policy</div>
+      <div class="d">How your data is handled. Short version: we don't collect or sell it.</div>
+    </a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <details class="faq">
+    <summary>How do I play The Gallows Way?</summary>
+    <div class="body">
+      It's a rummy-style card game. On your turn you build <b>runs of three or more consecutive cards in the same suit</b>, score them, and try to empty your hand. Each round has its own <b>wild cards</b>. The first player to reach <b>5,000 points</b> across rounds wins. The app includes a full interactive tutorial and an in-app "How to Play" section — tap <b>Rules</b> on the main menu anytime.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>What game modes are there?</summary>
+    <div class="body">
+      <b>Single player</b> — pass-and-play on one device, or play against 1–3 computer opponents. Set every player to Computer to watch a full AI match.<br><br>
+      <b>Local (Wi-Fi &amp; Bluetooth)</b> — play device-to-device with friends nearby, no internet required.<br><br>
+      <b>Online (Game Center)</b> — turn-based matches at your own pace; you're notified when it's your turn.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>I'm not getting "your turn" notifications for online games</summary>
+    <div class="body">
+      Online play uses Apple's Game Center, which delivers turn alerts as push notifications. Make sure: (1) you're <b>signed in to Game Center</b> (iOS Settings → Game Center); (2) notifications are enabled for The Gallows Way (iOS Settings → Notifications → The Gallows Way); and (3) you have a network connection. Turn notifications only arrive once it becomes your turn — that's how Game Center works.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>A nearby (Wi-Fi/Bluetooth) game won't connect</summary>
+    <div class="body">
+      Both devices should be <b>within about 30 feet</b> with <b>Bluetooth turned on</b>. For Wi-Fi play, make sure The Gallows Way is allowed under iOS Settings → Privacy &amp; Security → <b>Local Network</b>. If a connection stalls, tap <b>Retry</b> — the app automatically falls back from Wi-Fi to Bluetooth. If it still fails, fully close and reopen the app on both devices.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>How do leaderboards work?</summary>
+    <div class="body">
+      Global leaderboards are powered by Game Center and track your <b>career total points</b> and <b>total wins</b>, updated at the end of each online game. View them from <b>Settings → View Leaderboards</b> (you must be signed in to Game Center).
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>What accessibility options are available?</summary>
+    <div class="body">
+      In <b>Settings</b> you can adjust <b>card size</b> and <b>text size</b>, turn on <b>high-contrast borders</b>, and enable a <b>compact layout</b> for smaller phones. The game also supports <b>VoiceOver</b> throughout.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>How do I report a bug?</summary>
+    <div class="body">
+      The fastest way is the in-game <b>Report a Bug</b> button, which attaches a diagnostic report. You can also email us directly at <a href="mailto:bugs@auston.org?subject=The%20Gallows%20Way%20Bug%20Report">bugs@auston.org</a> — please describe what happened and what device/iOS version you're on.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Refunds and purchases</summary>
+    <div class="body">
+      The Gallows Way is a one-time paid app with no in-app purchases. All purchases and refunds are handled by Apple — visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> or contact Apple Support for billing questions.
+    </div>
+  </details>
+
+  <footer>
+    The Gallows Way · a family card game<br>
+    <a href="https://snoobiejunes.github.io/">Home</a> ·
+    <a href="https://snoobiejunes.github.io/privacy.html">Privacy</a> ·
+    <a href="mailto:bugs@auston.org">Email</a><br>
+    © 2026 Auston LeRoy
+  </footer>
+
+</div>
+</body>
+</html>
