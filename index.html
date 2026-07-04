@@ -1,144 +1,468 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  The Gallows Way marketing landing page (self-contained).
+  Theme drawn from the in-game art: dark night, gold sun-cross, a ship on the
+  water, crimson card-red accents, classic card motifs. Atmospheric, not loud.
+
+  WHERE THIS GOES
+  Copy this file to the ROOT of your GitHub Pages repo (snoobiejunes.github.io)
+  as index.html, ALONG WITH card-back.png and card-back-2x.png (the hero card).
+  It coexists with the files already there. Do NOT remove:
+     /.well-known/apple-app-site-association   (App Clip / universal links)
+     /challenge                                 (challenge handoff)
+     /privacy.html                              (privacy policy)
+  No JavaScript, no web fonts, no analytics, no trackers, no third-party CDNs.
+
+  SCREENSHOTS: drop App Store screenshots in /screenshots (01.png ... 04.png) and
+  uncomment the <img> lines in the Screens section.
+  OG IMAGE: add a 1200x630 og-image.png next to this file for link previews.
+-->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#16213e">
-<meta name="description" content="The Gallows Way — a family card game of runs, wild cards, and strategy for iPhone. Play solo vs. AI, locally over WiFi/Bluetooth, or online via Game Center.">
-<title>The Gallows Way — A Family Card Game for iPhone</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--gold:#FFD700;--gold2:#FFA500}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-    background:linear-gradient(160deg,#1a1a2e 0%,#16213e 55%,#0f1626 100%);
-    color:#f4f4f8;min-height:100vh;-webkit-font-smoothing:antialiased;
-    padding:0 20px calc(48px + env(safe-area-inset-bottom));
-  }
-  .wrap{max-width:880px;margin:0 auto}
-  header{text-align:center;padding:64px 0 40px}
-  .suit{font-size:42px;letter-spacing:8px;margin-bottom:14px}
-  h1{font-size:40px;font-weight:850;line-height:1.1;margin-bottom:14px}
-  .lede{color:#c2c8da;font-size:18px;line-height:1.55;max-width:560px;margin:0 auto 28px}
-  a.cta{
-    display:inline-block;padding:15px 30px;border-radius:14px;
-    background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e;
-    text-decoration:none;font-weight:800;font-size:17px;
-    box-shadow:0 10px 26px rgba(255,170,0,0.28);
-  }
-  a.cta:active{transform:translateY(1px)}
-  .sub{display:block;margin-top:14px;font-size:13px;color:#8b93a9}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Gallows Way: A Card Game for iPhone</title>
+  <meta name="description" content="A strategic Rummy-style card game for iPhone. Play solo against a clever AI, across the table with no internet, or online with friends via Apple Game Center. One fair price. No ads, no in-app purchases, no tracking." />
+  <meta name="theme-color" content="#0f1813" />
+  <meta name="color-scheme" content="dark" />
 
-  section.features{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;margin:24px 0 8px;
-  }
-  .feature{
-    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
-    border-radius:16px;padding:22px;
-  }
-  .feature h3{font-size:17px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
-  .feature p{color:#b9c0d4;font-size:14.5px;line-height:1.55}
-  .ico{font-size:20px}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Gallows Way: A Strategic Card Game for iPhone" />
+  <meta property="og:description" content="Lay your runs. Take theirs. Race to 5,000. A Rummy-style card game where the wild rank shifts every deal and the whole table is in play. Solo, offline across the table, or online via Game Center. No ads, no IAP, no tracking." />
+  <meta property="og:image" content="og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  .modes{margin-top:40px}
-  .modes h2{font-size:22px;text-align:center;margin-bottom:20px}
-  .mode{
-    display:flex;gap:14px;align-items:flex-start;
-    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
-    border-left:3px solid var(--gold);border-radius:12px;padding:16px 18px;margin-bottom:12px;
-  }
-  .mode b{display:block;margin-bottom:3px}
-  .mode span{color:#b9c0d4;font-size:14px;line-height:1.5}
-  .mode .m-ico{font-size:22px;line-height:1}
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c140f'/%3E%3Cg stroke='%23d7af48' fill='%23d7af48'%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke-width='1.6'/%3E%3Crect x='14.8' y='6' width='2.4' height='20' rx='1.2'/%3E%3Crect x='6' y='14.8' width='20' height='2.4' rx='1.2'/%3E%3Ccircle cx='16' cy='16' r='2.1'/%3E%3C/g%3E%3C/svg%3E" />
 
-  .note{
-    margin:40px auto 0;max-width:620px;text-align:center;
-    background:linear-gradient(135deg,rgba(124,77,255,0.12),rgba(94,53,177,0.05));
-    border:1px solid rgba(124,77,255,0.25);border-radius:18px;padding:26px 24px;
-  }
-  .note .q{font-size:26px;color:var(--gold);line-height:0;margin-bottom:6px;display:block}
-  .note p{color:#dfe3ee;font-size:15px;line-height:1.65;font-style:italic}
-  .note p b{font-style:normal}
+  <style>
+    :root{
+      --night-top:#1a2a20; --night:#0f1813; --night-deep:#070f0b;
+      --gold:#d7af48; --gold-soft:#e9c878; --gold-bright:#f3dc94;
+      --crimson:#c0211c; --crimson-soft:#dd5a44;
+      --cream:#f1e9cf; --muted:rgba(241,233,207,.74); --muted-2:rgba(241,233,207,.52);
+      --line:rgba(215,175,72,.22); --line-strong:rgba(215,175,72,.4);
+      --panel:rgba(255,255,255,.035); --radius:16px; --maxw:1080px;
+      --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0; font-family:var(--sans); color:var(--cream); line-height:1.62;
+      background:
+        radial-gradient(540px 540px at 16% -4%, rgba(243,220,148,.16), rgba(243,220,148,.04) 40%, transparent 62%),
+        radial-gradient(900px 700px at 88% 4%, rgba(30,80,48,.40), transparent 55%),
+        linear-gradient(180deg, var(--night-top) 0%, var(--night) 34%, var(--night-deep) 100%);
+      background-attachment:fixed; -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--gold-soft); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    :focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:6px;}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px;}
+    .center{text-align:center;}
+    h1,h2,h3{font-family:var(--serif); font-weight:700;}
 
-  footer{text-align:center;margin-top:48px;font-size:12.5px;color:#6b7287;line-height:1.8}
-  footer a{color:#9aa2b8;text-decoration:none}
-  footer a:hover{text-decoration:underline}
+    /* hero */
+    .hero{position:relative; padding:70px 0 18px; overflow:hidden;}
+    .hero::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.7;
+      background-image:
+        radial-gradient(1.6px 1.6px at 12% 22%, #fff8, transparent),
+        radial-gradient(1.2px 1.2px at 78% 14%, #fff7, transparent),
+        radial-gradient(1px 1px at 34% 10%, #fff6, transparent),
+        radial-gradient(1.4px 1.4px at 64% 28%, #fff6, transparent),
+        radial-gradient(1px 1px at 90% 24%, #fff5, transparent),
+        radial-gradient(1px 1px at 50% 18%, #fff5, transparent),
+        radial-gradient(1.2px 1.2px at 24% 34%, #fff4, transparent),
+        radial-gradient(1px 1px at 84% 38%, #fff4, transparent);
+    }
+    .hero > *{position:relative;}
+    .emblem-card{width:148px; height:auto; display:block; margin:0 auto 26px; border-radius:11px;
+      box-shadow:0 18px 44px rgba(0,0,0,.6); border:1px solid rgba(0,0,0,.3);}
+    h1.title{font-size:clamp(2.7rem,8vw,5rem); line-height:1; margin:0 0 12px; letter-spacing:.5px;
+      background:linear-gradient(180deg,#fffdf4, var(--gold-bright) 62%, var(--gold));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+    .suits{display:flex; justify-content:center; gap:18px; margin:2px 0 18px; font-size:1.5rem;}
+    .suits .s{color:var(--gold);} .suits .r{color:var(--crimson-soft);}
+    .tagline{font-family:var(--serif); font-size:clamp(1.2rem,2.7vw,1.7rem); color:var(--gold-soft); margin:0 auto 14px; max-width:30ch; font-style:italic;}
+    .subhead{font-size:1.08rem; color:var(--muted); max-width:54ch; margin:0 auto 30px;}
 
-  @media(max-width:520px){h1{font-size:32px}.lede{font-size:16px}header{padding:48px 0 32px}}
-</style>
+    .cta{display:inline-flex; align-items:center; gap:12px; background:#000; color:#fff;
+      padding:13px 22px 13px 18px; border-radius:14px; border:1px solid var(--line-strong);
+      font-weight:600; box-shadow:0 10px 30px rgba(0,0,0,.45); transition:transform .15s, box-shadow .15s;}
+    .cta:hover{text-decoration:none; transform:translateY(-2px); box-shadow:0 14px 38px rgba(0,0,0,.55);}
+    .cta svg{width:26px;height:26px;}
+    .cta .cta-top{font-size:.72rem; opacity:.85; line-height:1; display:block; font-weight:500;}
+    .cta .cta-big{font-size:1.18rem; line-height:1.1; display:block;}
+    .platform{margin-top:14px; font-size:.9rem; color:var(--muted-2);}
+
+    .strip{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:32px auto 0; max-width:780px;}
+    .pill{display:inline-flex; align-items:center; gap:8px; background:var(--panel); border:1px solid var(--line); padding:9px 15px; border-radius:999px; font-weight:600; font-size:.95rem;}
+    .pill svg{width:16px;height:16px; color:var(--gold);}
+
+    /* ship divider */
+    .ship{display:flex; align-items:center; gap:18px; max-width:680px; margin:46px auto 6px; color:var(--gold); opacity:.5;}
+    .ship .ln{flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--line-strong),transparent);}
+    .ship svg{width:116px; height:auto; flex:none;}
+
+    /* sections */
+    section{padding:52px 0;}
+    .eyebrow{text-transform:uppercase; letter-spacing:3px; font-size:.76rem; color:var(--gold); font-weight:700; margin:0 0 10px; font-family:var(--sans);}
+    h2{font-size:clamp(1.8rem,4.2vw,2.7rem); margin:0 0 16px; letter-spacing:.2px;}
+    .lead{font-size:1.13rem; color:var(--muted); max-width:62ch;}
+    .lead strong{color:var(--cream);}
+    .hl{color:var(--gold-bright); font-weight:700;}
+
+    /* feature grid */
+    .grid{display:grid; gap:16px; margin-top:32px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; transition:transform .15s, border-color .15s, background .15s;}
+    .card:hover{transform:translateY(-3px); border-color:var(--line-strong); background:rgba(255,255,255,.06);}
+    .ic{width:44px;height:44px; border-radius:12px; margin-bottom:14px; display:grid; place-items:center;
+      background:linear-gradient(160deg,rgba(215,175,72,.20),rgba(215,175,72,.05)); border:1px solid var(--line); color:var(--gold);}
+    .ic svg{width:24px;height:24px;}
+    .card h3{margin:0 0 7px; font-size:1.15rem;}
+    .card p{margin:0; color:var(--muted); font-size:.97rem;}
+
+    /* spotlights (pronounced) */
+    .spot-grid{display:grid; gap:18px; margin-top:8px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+    .spot{position:relative; background:linear-gradient(160deg,rgba(215,175,72,.11),rgba(255,255,255,.02)); border:1px solid var(--line-strong); border-radius:20px; padding:30px 28px;}
+    .spot .ic{width:54px;height:54px; margin-bottom:16px;}
+    .spot h3{font-size:1.5rem; margin:0 0 10px; line-height:1.15;}
+    .spot p{margin:0; color:var(--muted); font-size:1.04rem;}
+    .spot .badge{display:inline-block; margin-bottom:14px; font-size:.72rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); font-weight:700;}
+
+    /* horizontal rows */
+    .rows{display:grid; gap:14px; margin-top:30px;}
+    .row{display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:center;
+      background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px 24px;
+      transition:border-color .15s, background .15s;}
+    .row:hover{border-color:var(--line-strong); background:rgba(255,255,255,.05);}
+    .row .ic{margin-bottom:0; width:54px; height:54px;}
+    .row .rc h3{margin:0 0 5px; font-size:1.2rem; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+    .row .rc .tag{font-family:var(--sans); font-size:.7rem; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold); font-weight:700; opacity:.85;}
+    .row .rc p{margin:0; color:var(--muted); font-size:1.01rem;}
+    @media(max-width:560px){ .row{grid-template-columns:46px 1fr; gap:15px; padding:18px;} .row .ic{width:46px;height:46px;} }
+
+    /* steps */
+    .steps{display:grid; gap:18px; margin-top:30px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); counter-reset:step;}
+    .step{position:relative; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px 22px;}
+    .step::before{counter-increment:step; content:counter(step); position:absolute; top:-16px; left:20px; width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-weight:800; font-family:var(--serif); color:var(--night-deep); background:var(--gold); box-shadow:0 6px 16px rgba(0,0,0,.4);}
+    .step h3{margin:8px 0 6px; font-size:1.1rem;}
+    .step p{margin:0; color:var(--muted); font-size:.96rem;}
+
+    /* family note */
+    .note{text-align:center; max-width:64ch; margin:0 auto;}
+    .note .mark{color:var(--gold); opacity:.6; font-size:1.2rem; letter-spacing:10px; margin-bottom:18px;}
+    .note p{font-family:var(--serif); font-style:italic; font-size:clamp(1.18rem,2.4vw,1.42rem); color:var(--cream); line-height:1.7; margin:0;}
+    .note .sig{font-style:normal; font-family:var(--sans); color:var(--gold-soft); font-size:.95rem; margin-top:18px; letter-spacing:.4px;}
+
+    /* privacy */
+    .privacy{background:linear-gradient(160deg,rgba(215,175,72,.09),rgba(255,255,255,.02)); border:1px solid var(--line-strong); border-radius:20px; padding:42px clamp(22px,4vw,48px);}
+    .privacy h2{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+    .privacy h2 svg{width:30px;height:30px; color:var(--gold); flex:none;}
+    .privacy p{font-size:1.1rem; color:var(--cream); max-width:72ch;}
+    .privacy .fine{font-size:.96rem; color:var(--muted-2); margin-top:14px;}
+    .checks{display:grid; gap:10px; margin:22px 0 0; padding:0; list-style:none; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+    .checks li{display:flex; align-items:flex-start; gap:10px; font-weight:600;}
+    .checks svg{width:20px;height:20px; color:var(--gold); flex:none; margin-top:2px;}
+
+    /* screens */
+    .screens{display:grid; gap:18px; margin-top:30px; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+    .phone{aspect-ratio:9/19.5; border-radius:26px; border:2px dashed var(--line-strong); background:rgba(0,0,0,.22); display:grid; place-items:center; text-align:center; color:var(--muted-2); font-size:.9rem; padding:16px; overflow:hidden;}
+    .phone img{width:100%; height:100%; object-fit:cover; border-radius:24px;}
+
+    .final{text-align:center;}
+    .final h2{margin-bottom:8px;}
+    .final p{color:var(--muted); margin:0 auto 26px; max-width:52ch;}
+    .suit-rule{display:flex; align-items:center; justify-content:center; gap:16px; margin-top:26px; font-size:1.15rem; letter-spacing:8px;}
+    .suit-rule .blk{color:var(--gold);} .suit-rule .red{color:var(--crimson-soft);}
+
+    footer{border-top:1px solid var(--line); padding:34px 0 50px; color:var(--muted-2); font-size:.92rem;}
+    footer .row{display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center; justify-content:space-between; background:none; border:none; padding:0;}
+    footer .links{display:flex; flex-wrap:wrap; gap:8px 20px;}
+
+    @media (prefers-reduced-motion:reduce){ *{transition:none!important; scroll-behavior:auto!important;} }
+  </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="suit">♠&#xfe0e; ♥&#xfe0e; ♣&#xfe0e; ♦&#xfe0e;</div>
-    <h1>The Gallows Way</h1>
-    <p class="lede">
-      A family card game of runs, wild cards, and nerve. Build runs of three or
-      more same-suit cards, empty your hand, and race to 5,000 points. No two
-      rounds are ever the same.
-    </p>
-    <a class="cta" href="https://apps.apple.com/app/id6761637905">Download on the App Store</a>
-    <span class="sub">For iPhone · Single player, local, and online multiplayer</span>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap center">
+      <img class="emblem-card" src="card-back.png" srcset="card-back.png 1x, card-back-2x.png 2x" width="148" height="213" alt="The Gallows Way playing card" />
+      <h1 class="title">The Gallow's Way</h1>
+      <p class="suits" aria-hidden="true"><span class="s">&#9824;</span><span class="r">&#9829;</span><span class="s">&#9827;</span><span class="r">&#9830;</span></p>
+      <p class="tagline">A card game of wit, strategy, and a bit of luck.</p>
+      <p class="subhead">Let's play cards the <strong>Gallow's Way!</strong> Built on a <i>classic Rummy</i> foundation, with a <i>twist</i>. <strong>Every round</strong>, the wild cards, hand size, and player order all <i>change</i> like the <strong>tides</strong>.</p>
+
+      <a class="cta" href="https://apps.apple.com/app/id6761637905" aria-label="Download The Gallows Way on the App Store">
+        <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.36 12.78c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.15.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.29-.88-2.31-3.51zM14.2 6.2c.6-.73 1.01-1.74.9-2.75-.87.04-1.93.58-2.56 1.3-.56.65-1.05 1.69-.92 2.68.97.08 1.97-.49 2.58-1.23z"/></svg>
+        <span><span class="cta-top">Download on the</span><span class="cta-big">App Store</span></span>
+      </a>
+      <p class="platform">iPhone &middot; Requires iOS 17 or later &middot; One-time purchase</p>
+
+      <ul class="strip" aria-label="What's included">
+          <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>One Price</li>
+        <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No ads</li>
+        <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No in-app purchases</li>
+        <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No tracking</li>
+        <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No subscriptions</li>
+      </ul>
+    </div>
   </header>
 
-  <section class="features">
-    <div class="feature">
-      <h3><span class="ico">🃏</span> Easy to learn</h3>
-      <p>Think Uno meets Solitaire. A guided tutorial and in-app rules get new players going in minutes, with optional move hints on every turn.</p>
+  <div class="wrap">
+    <div class="ship" aria-hidden="true">
+      <span class="ln"></span>
+      <svg viewBox="0 0 170 64" fill="currentColor">
+        <path d="M16 40 q69 17 138 0 q-12 13 -27 14 H43 q-15 -1 -27 -14 Z"/>
+        <path d="M16 40 q-9 -3 -10 -15 q0 -7 6 -9 q-3 6 1 10 q3 4 9 7 z"/>
+        <path d="M154 40 q9 -3 10 -15 q0 -7 -6 -9 q3 6 -1 10 q-3 4 -9 7 z"/>
+        <rect x="83" y="4" width="4" height="38"/>
+        <path d="M52 12 q33 -9 66 0 v20 q-33 9 -66 0 z" opacity=".9"/>
+        <circle cx="58" cy="45" r="3"/><circle cx="72" cy="46" r="3"/><circle cx="85" cy="46.5" r="3"/><circle cx="98" cy="46" r="3"/><circle cx="112" cy="45" r="3"/>
+      </svg>
+      <span class="ln"></span>
     </div>
-    <div class="feature">
-      <h3><span class="ico">🎲</span> Always fresh</h3>
-      <p>Every round deals new wild cards and a new hand decided by a card flip — so strategy shifts game to game.</p>
-    </div>
-    <div class="feature">
-      <h3><span class="ico">🏆</span> Compete worldwide</h3>
-      <p>Global Game Center leaderboards track your career points and wins. See where you rank against players everywhere.</p>
-    </div>
-    <div class="feature">
-      <h3><span class="ico">♿️</span> Built for everyone</h3>
-      <p>Adjustable card and text sizes, high-contrast mode, a compact layout for small phones, and full VoiceOver support.</p>
-    </div>
-  </section>
-
-  <section class="modes">
-    <h2>Four ways to play</h2>
-    <div class="mode">
-      <div class="m-ico">📱</div>
-      <div><b>Single player</b><span>Pass-and-play on one device, or test yourself against 1–3 computer opponents. Set every seat to AI to sit back and watch a full match.</span></div>
-    </div>
-    <div class="mode">
-      <div class="m-ico">📶</div>
-      <div><b>Local — WiFi &amp; Bluetooth</b><span>Play device-to-device with friends nearby, no internet needed. Perfect for camping, road trips, or anywhere service is spotty.</span></div>
-    </div>
-    <div class="mode">
-      <div class="m-ico">🌐</div>
-      <div><b>Online — Game Center</b><span>Turn-based matches at your own pace. Invite friends, auto-match with strangers, and get notified when it's your turn.</span></div>
-    </div>
-    <div class="mode">
-      <div class="m-ico">🔗</div>
-      <div><b>Challenge a friend</b><span>Send a link and a friend can play a full match instantly through an App Clip — no purchase required to try it.</span></div>
-    </div>
-  </section>
-
-  <div class="note">
-    <span class="q">&ldquo;</span>
-    <p>
-      My <b>Aunt, Uncle, and Mom</b> have played this game together for years at
-      family gatherings. We live 2,000 miles apart now, so this app is how I bring
-      a little piece of home with me and stay connected to family. Hope you have
-      as much fun with it as we have.
-    </p>
   </div>
 
+  <!-- WHAT IT IS -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">A Rummy-style game with teeth</p>
+      <h2>Easy to learn. Cutthroat to master.</h2>
+      <p class="lead">
+      Lay down runs of three or cards in a row, as you race to score your entire hand before your opponent. The table is always in play. Extend any
+      run for points, or borrow a card straight out of an opponents spoils and extend any run. First to 5,000 points wins.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOUR WAYS TO PLAY (rows) -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Four ways to play</p>
+      <h2>However your table gathers.</h2>
+      <div class="rows">
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="11" rx="2.5"/><path d="M12 7V4M9 12h.01M15 12h.01M9 15.5h6"/><path d="M3 11v3M21 11v3"/></svg></div>
+          <div class="rc"><h3>Solo vs. a clever AI <span class="tag">Offline</span></h3><p>face up to three computer opponents, or watch AI duke it out.</p></div>
+        </div>
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg></div>
+          <div class="rc"><h3>Pass &amp; play <span class="tag">2 to 4 players</span></h3><p>Share one device around the table. A pass screen hides each hand between turns so nobody peeks.</p></div>
+        </div>
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><path d="M6 13a5 5 0 0 1 5 5M6 8a10 10 0 0 1 10 10"/><path d="M16 6l3 3M19 6l-3 3"/></svg></div>
+          <div class="rc"><h3>Across the table, no internet <span class="tag">Wi-Fi or Bluetooth</span></h3><p>No data, no problem. Play across from a friend over a direct link.  Great for a road trip, a cabin, train commute or a long flight.</p></div>
+        </div>
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+          <div class="rc"><h3>Online with Apple Game Center <span class="tag">Turn-based</span></h3><p>Play friends or matched rivals worldwide at your own pace, with a notification when it's your turn.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHTS (pronounced) -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What sets it apart</p>
+      <h2>Two things most games can't do.</h2>
+      <div class="spot-grid">
+
+        <article class="spot">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 7L7 17"/><path d="M12 2v20"/><path d="M12 6l4 3-4 3M12 12l4 3-4 3"/></svg></div>
+          <span class="badge">No internet required</span>
+          <h3>Play anywhere, even without a signal</h3>
+          <p>No Wi-Fi, no cell service, no problem. Connect iPhone-to-iPone, Play across from a friend over a direct link.  Great for a road trip, a cabin, train commute or a long flight.</p>
+        </article>
+
+        <article class="spot">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M11 6l1-1a4 4 0 0 1 6 6l-1 1"/><path d="M13 18l-1 1a4 4 0 0 1-6-6l1-1"/></svg></div>
+          <span class="badge">No purchase required</span>
+          <h3>Challenge a friend who doesn't own it</h3>
+          <p>Anyone can play a full match against you without buying the game first.  Just send them your unique link. Able to play an entire 1v1 match against you for free, so you always have someone to play with.  </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (grid) -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Features</p>
+      <h2>Simple to Start. Obtuse Enough to Obsess Over.</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3z"/></svg></div>
+          <h3>No two rounds alike</h3>
+          <p>Every round the wildcard, the handsize and the player order shift. Providing a unique game experience everytime!  </p>
+        </article>
+        
+        <article class="card">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/><path d="M11 8v6M8 11h6"/></svg></div>
+          <h3>Learn in a minute</h3>
+          <p>New? Start against a computer with a short interactive walkthrough teaches the loop, then tips appear right when a rule matters.</p>
+        </article>
+
+        <article class="card">
+            <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.2 1 2.5h6c0-1.3.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></div>
+          <h3>A hint when you're stuck</h3>
+          <p>Stuck? Tap the lightbulb for some guidance from the machine itself. It'll tell you a potential move to make with the right cards lit up. Use it while you learn.</p>
+        </article>
+
+        <article class="card">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l3 3v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8 4v5h7V4M9 13h6M9 16h4"/></svg></div>
+          <h3>Several games on the go</h3>
+          <p>On-device games save after every turn. Resume any of them, and your online matches, straight from the menu.</p>
+        </article>
+
+        <article class="card">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10h16M4 14h10M4 18h10"/><path d="M18 16l2 2 2-2"/></svg></div>
+          <h3>A running log of the match</h3>
+          <p>A synced play-by-play of every draw, run, and score, so you can catch up after a break.</p>
+        </article>
+
+        <article class="card">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17l5-12 4 9 2-4 3 7"/><path d="M4 21h16"/></svg></div>
+          <h3>Bragging rights</h3>
+          <p>See where you stack up against your friends or other players around the globe. Built with Game Center leaderboards that track your total points scored and every win.</p>
+        </article>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESSIBILITY (rows) -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Built to be played by everyone</p>
+      <h2>A card game you can shape to your eyes and ears.</h2>
+      <div class="rows">
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8.5"/></svg></div>
+          <div class="rc"><h3>Tune the table</h3><p>Adjustable card size, text size, high-contrast borders, and a compact layout. Accessibility first, by design.</p></div>
+        </div>
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7"/><path d="M18.5 6a7 7 0 0 1 0 12"/></svg></div>
+          <div class="rc"><h3>Cards that speak to you</h3><p>Every card, button, and status is spoken, with suits and points using iPhones built-in VoiceOver feature.</p></div>
+        </div>
+
+        <div class="row">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+          <div class="rc"><h3>Crafted, not cluttered</h3><p>Gentle haptics, subtle sound, and a calm hand-drawn look. No clutter, no bright flashes or dizzying animations.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO PLAY -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">The 30-second version</p>
+      <h2>How to play</h2>
+      <div class="steps">
+        <div class="step"><h3>Chance crafts the cards</h3><p>A card flip sets your hand size, another sets the round's wildcard, and Jokers are always wild.</p></div>
+        <div class="step"><h3>Draw, Build, Discard</h3><p>Draw or scoop from the discard pile, lay your own runs or build off others, then discard the worst card to pass your turn.</p></div>
+        <div class="step"><h3>Score Runs</h3><p>Three or more consecutive cards of the same suit. Aces play high or low, and wildcards fill the gaps.</p></div>
+        <div class="step"><h3>Go out, win the round</h3><p>Discard your last card to go out. Every card left in other hands becomes your points. First to 5,000 wins.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY NOTE -->
+  <section>
+    <div class="wrap">
+      <div class="note">
+        <p class="mark" aria-hidden="true">&#9824; &#9827;</p>
+        <p>
+          This one started at a family table. My aunt, uncle, and mom have played it together for years at
+          family gatherings. We live a couple thousand miles apart now, so this is how I carry a little piece
+          of home with me and stay close. The artwork is drawn from our family's Celtic and Norse roots.
+          I hope you and yours have as much fun with it as we do.
+        </p>
+        <p class="sig">From our family's table to yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section>
+    <div class="wrap">
+      <div class="privacy">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          Buy once. Own everything.
+        </h2>
+        <p>
+          A game model from a simpler time, one where you get what you pay for, and our players enjoyment is the only motive.  No tracking, No ads, no in-app purchases, no subscriptions, EVER. We run no servers, your
+        <strong>data is NEVER collected</strong>.  Just a card game played the Gallow's Way!
+        </p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>One fair price, fully featured</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No ads, in-app purchases or subscriptions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>No analytics, no tracking, no third-party SDKs</li>
+        </ul>
+        <p class="fine">
+          The game shares only your name and your moves, and only with the people you're playing with: directly
+          device-to-device over Wi-Fi or Bluetooth, or through Apple Game Center for online play,
+          turn notifications, and leaderboards. Nothing is ever sent to us. The one exception is entirely your
+          call: if you choose to send a bug report, which contains details about the boardstate, but you can review exactly what it contains before you send it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">A look at the table</p>
+      <h2>See it in play</h2>
+      <div class="screens">
+        <!-- Replace each placeholder with your screenshots, e.g.:
+             <div class="phone"><img src="screenshots/01.png" alt="The Gallows Way game table"></div> -->
+        <div class="phone">Screenshot 1<br><small>add /screenshots/01.png</small></div>
+        <div class="phone">Screenshot 2<br><small>add /screenshots/02.png</small></div>
+        <div class="phone">Screenshot 3<br><small>add /screenshots/03.png</small></div>
+        <div class="phone">Screenshot 4<br><small>add /screenshots/04.png</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="wrap final">
+      <h2>Deal me in.</h2>
+      <p>One download. One price. Everything included.</p>
+      <a class="cta" href="https://apps.apple.com/app/id6761637905" aria-label="Download The Gallows Way on the App Store">
+        <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.36 12.78c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.15.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.29-.88-2.31-3.51zM14.2 6.2c.6-.73 1.01-1.74.9-2.75-.87.04-1.93.58-2.56 1.3-.56.65-1.05 1.69-.92 2.68.97.08 1.97-.49 2.58-1.23z"/></svg>
+        <span><span class="cta-top">Download on the</span><span class="cta-big">App Store</span></span>
+      </a>
+      <p class="suit-rule" aria-hidden="true"><span class="blk">&#9824;</span> <span class="red">&#9829;</span> <span class="blk">&#9827;</span> <span class="red">&#9830;</span></p>
+    </div>
+  </section>
+
   <footer>
-    Inspired by Celtic &amp; Norse heritage, the Gall-Ghàidhealaibh<br>
-    <a href="https://snoobiejunes.github.io/privacy.html">Privacy Policy</a> ·
-    <a href="mailto:bugs@auston.org">Contact &amp; Support</a><br>
-    © 2026 Auston LeRoy
+    <div class="wrap row">
+      <div>&copy; 2026 The Gallows Way</div>
+      <nav class="links" aria-label="Footer">
+        <a href="https://apps.apple.com/app/id6761637905">App Store</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
   </footer>
 
-</div>
 </body>
 </html>
