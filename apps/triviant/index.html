@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triviant — Trivia with teeth</title>
+<meta name="description" content="Ranked 1-on-1 trivia online, in-person trivia nights over local Wi-Fi, and multi-round tournaments. No accounts, no ads, no tracking.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbf8fd;
+    --fg: #1e1526;
+    --muted: #665a72;
+    --card: #ffffff;
+    --border: rgba(30, 21, 38, 0.1);
+    --accent: #9333ea;
+    --accent-deep: #581c87;
+    --accent-hot: #c026d3;
+    --accent-soft: rgba(147, 51, 234, 0.1);
+    --hero-grad: linear-gradient(160deg, #f6ecff 0%, #fbf8fd 55%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16111d;
+      --fg: #f1eaf7;
+      --muted: #b0a4bd;
+      --card: #221a2c;
+      --border: rgba(241, 234, 247, 0.12);
+      --accent: #c084fc;
+      --accent-deep: #9333ea;
+      --accent-hot: #e879f9;
+      --accent-soft: rgba(192, 132, 252, 0.14);
+      --hero-grad: linear-gradient(160deg, #2a1740 0%, #16111d 55%);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--accent); }
+  nav { padding: 1.25rem 0; font-size: 0.95rem; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--fg); }
+
+  /* Hero */
+  .hero-bg { background: var(--hero-grad); }
+  .hero { display: grid; gap: 2.5rem; align-items: center; padding: 3rem 0 4rem; }
+  @media (min-width: 760px) { .hero { grid-template-columns: 1.15fr 1fr; } }
+  .badge {
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 99px; padding: 0.3rem 0.85rem; margin-bottom: 1.25rem;
+  }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.08; letter-spacing: -0.025em; }
+  h1 .accent {
+    background: linear-gradient(90deg, var(--accent), var(--accent-hot));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: 1.2rem; color: var(--muted); margin: 1.25rem 0 2rem; max-width: 30em; }
+  .cta {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 1.05rem;
+    color: #fff; background: linear-gradient(135deg, var(--accent-hot), var(--accent-deep));
+    padding: 0.85rem 1.8rem; border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(147, 51, 234, 0.35);
+  }
+  .cta:hover { filter: brightness(1.1); }
+  .cta-note { display: block; margin-top: 0.7rem; font-size: 0.85rem; color: var(--muted); }
+
+  /* CSS device mockup — versus screen */
+  .phone {
+    width: min(290px, 80vw); margin: 0 auto;
+    aspect-ratio: 9 / 19; border-radius: 42px;
+    background: #120b1c; padding: 12px;
+    box-shadow: 0 24px 60px rgba(88, 28, 135, 0.4), inset 0 0 0 2px rgba(255,255,255,0.08);
+  }
+  .screen {
+    height: 100%; border-radius: 32px; overflow: hidden; position: relative;
+    background: linear-gradient(170deg, #581c87 0%, #7e22ce 45%, #a21caf 100%);
+    display: flex; flex-direction: column; padding: 2.4rem 1rem 1rem; color: #fff;
+  }
+  /* screenshot slot: replace the .screen contents below with a real Triviant match screenshot */
+  .notch {
+    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 38%; height: 18px; background: #120b1c; border-radius: 99px;
+  }
+  .m-vs { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 700; }
+  .m-vs .mid { opacity: 0.7; font-weight: 400; }
+  .m-timer {
+    margin: 0.7rem auto; width: 52px; height: 52px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9); border-bottom-color: rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;
+  }
+  .m-q { font-size: 0.84rem; font-weight: 600; line-height: 1.35; margin-bottom: 0.8rem; text-align: center; }
+  .m-a {
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 10px; padding: 0.48rem 0.7rem; font-size: 0.73rem; margin-bottom: 0.45rem;
+  }
+  .m-a.locked { background: rgba(255,255,255,0.92); color: #581c87; font-weight: 700; }
+  .m-score {
+    margin-top: auto; display: flex; justify-content: space-between; font-size: 0.68rem;
+    border-top: 1px solid rgba(255,255,255,0.2); padding-top: 0.6rem; opacity: 0.9;
+  }
+
+  /* Sections */
+  section { padding: 3.5rem 0; }
+  section + section { border-top: 1px solid var(--border); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .kicker { color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .section-lede { color: var(--muted); max-width: 40em; margin-bottom: 2rem; }
+
+  /* Mode cards */
+  .modes { display: grid; gap: 1.25rem; }
+  @media (min-width: 760px) { .modes { grid-template-columns: 1fr 1fr 1fr; } }
+  .mode {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.6rem; position: relative; overflow: hidden;
+  }
+  .mode::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hot));
+  }
+  .mode .players { font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+  .mode h3 { font-size: 1.2rem; margin: 0.3rem 0 0.5rem; }
+  .mode p { font-size: 0.95rem; color: var(--muted); }
+  .mode ul { margin: 0.8rem 0 0 1.1rem; font-size: 0.92rem; color: var(--muted); }
+  .mode li { margin-bottom: 0.35rem; }
+
+  .grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .feature h3 { font-size: 1.08rem; margin-bottom: 0.35rem; }
+  .feature p { font-size: 0.95rem; color: var(--muted); }
+
+  /* How it works */
+  .steps { display: grid; gap: 1.5rem; counter-reset: step; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { counter-increment: step; }
+  .step::before {
+    content: counter(step);
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-hot), var(--accent-deep));
+    color: #fff; font-weight: 800; font-size: 0.95rem; margin-bottom: 0.8rem;
+  }
+  .step h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .step p { font-size: 0.92rem; color: var(--muted); }
+
+  .final { text-align: center; }
+  .final p { color: var(--muted); max-width: 32em; margin: 0 auto 2rem; }
+
+  /* Real screenshots */
+  .shot {
+    display: block; width: 100%; height: auto;
+    border-radius: 24px; border: 1px solid var(--border);
+    box-shadow: 0 18px 50px rgba(88, 28, 135, 0.3);
+  }
+  .hero .shot { max-width: 300px; margin: 0 auto; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0 3.5rem; color: var(--muted); font-size: 0.9rem; text-align: center;
+  }
+  footer p { margin-bottom: 0.4rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+
+<div class="hero-bg">
+  <div class="wrap">
+    <nav><a href="../">&larr; All apps</a></nav>
+    <div class="hero">
+      <div>
+        <span class="badge">From the maker of The Gallow's Way</span>
+        <h1>Trivia with <span class="accent">teeth</span>.</h1>
+        <p class="lede">Ranked 1-on-1 duels online. Trivia nights with the phones already in the room — no internet required. Tournaments when it gets serious. Built on the same fact-checked question engine as Schlr.</p>
+        <a class="cta" href="#testflight">Join the TestFlight beta</a>
+        <span class="cta-note">Free. No account. iOS 26 or later.</span>
+      </div>
+      <div>
+        <img class="shot" src="../assets/triviant-home.jpg" width="660" height="1434"
+             alt="The Triviant home screen: practice match, find an opponent, trivia night, tournaments, and your Wheelhouse">
+        <!-- screenshot slot: swap in a real 1v1 match screenshot once two-device capture is possible -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="modes">
+    <p class="kicker">Three ways to play</p>
+    <h2>Across the internet, or across the table</h2>
+    <p class="section-lede">Triviant treats in-person play as a first-class mode, not an afterthought. If the phones are in the same room, you don't even need the internet.</p>
+    <div class="modes">
+      <div class="mode">
+        <span class="players">2 players &middot; online</span>
+        <h3>Ranked 1-on-1</h3>
+        <p>Head-to-head over Game Center, in lockstep: same question, same countdown, simultaneous reveal.</p>
+        <ul>
+          <li>Skill-bucketed matchmaking, or invite a friend</li>
+          <li>A career rating that rises and falls with every ranked match</li>
+          <li>Game Center leaderboards</li>
+          <li>Both players pitch a topic — the round blends them into one</li>
+        </ul>
+      </div>
+      <div class="mode">
+        <span class="players">3+ players &middot; in person</span>
+        <h3>Trivia Night</h3>
+        <p>One host, a room code, and everyone's in. Runs over local networking — it works on a boat, in a basement, anywhere with no signal at all.</p>
+        <ul>
+          <li>Live scoreboard on every phone</li>
+          <li>Host-run timing, so one slow player can't stall the room</li>
+          <li>Scores sync up whenever you're back online</li>
+        </ul>
+      </div>
+      <div class="mode">
+        <span class="players">Groups &middot; in person</span>
+        <h3>Tournaments</h3>
+        <p>Multi-round events built from themed question packs, for when the night needs a bracket and a winner.</p>
+        <ul>
+          <li>Local-network mode scales to dozens of players</li>
+          <li>Nearby mode for instant small-group joins</li>
+          <li>Off-grid options for no-Wi-Fi venues</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="engine">
+    <p class="kicker">Under the hood</p>
+    <h2>Questions worth arguing over</h2>
+    <p class="section-lede">Trivia lives or dies on its questions. Triviant's come from the same engine as Schlr, our adaptive learning app — which means every one is independently fact-checked before any player ever sees it.</p>
+    <div class="grid">
+      <div class="feature">
+        <h3>Your Wheelhouse shapes the game</h3>
+        <p>Tell Triviant what you're into, and your interest profile tilts the question mix toward ground you and your opponents actually care about.</p>
+      </div>
+      <div class="feature">
+        <h3>Difficulty that matches the match</h3>
+        <p>Questions carry real difficulty ratings sharpened by crowd answers, and your career rating steers what you're served — close games, not blowouts.</p>
+      </div>
+      <div class="feature">
+        <h3>Invent a topic tonight, own it tomorrow</h3>
+        <p>In 1-on-1, both players' prompts blend into a fresh generated topic. Those questions get fact-checked and banked — tonight's inside joke becomes part of the shared question pool.</p>
+      </div>
+      <div class="feature">
+        <h3>Fair by design</h3>
+        <p>Lockstep rounds, heartbeat liveness so silent disconnects can't stall a match, and forfeit rules that keep ranked play honest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <p class="kicker">Trivia night, start to finish</p>
+    <h2>From "who's in?" to a winner in minutes</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Host opens a room</h3>
+        <p>One phone hosts and gets a room code. No internet, no router, no setup.</p>
+      </div>
+      <div class="step">
+        <h3>Everyone joins</h3>
+        <p>Players enter the code on their own phones and appear on the roster.</p>
+      </div>
+      <div class="step">
+        <h3>Play in lockstep</h3>
+        <p>Same question on every screen, one countdown, live scoreboard between rounds.</p>
+      </div>
+      <div class="step">
+        <h3>Crown a champion</h3>
+        <p>Final standings for bragging rights — or roll straight into a tournament bracket.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="testflight">
+    <h2>Get in before your friends do</h2>
+    <p>Triviant is heading to TestFlight. Ranked play is more fun with more players in the pool — early testers set the ladder.</p>
+    <!-- TODO: replace # with the real TestFlight public link when the beta opens -->
+    <a class="cta" href="mailto:leroy@auston.org?subject=TestFlight%20beta%20%E2%80%94%20Triviant">Request a TestFlight invite</a>
+    <span class="cta-note" style="display:block; margin-top:0.7rem;">Link coming soon &middot; requires iOS 26+</span>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Triviant</strong> &middot; an app by SnoobieJunes &middot; <a href="../">all apps</a> &middot; sibling: <a href="../schlr/">Schlr</a></p>
+    <p>No accounts. No ads. No tracking. Questions are AI-generated and independently fact-checked. Online play uses your Game Center identity; nothing else leaves your device but anonymous question data.</p>
+    <p>Support: <a href="mailto:leroy@auston.org">leroy@auston.org</a> &middot; &copy; 2026 SnoobieJunes</p>
+  </div>
+  · <a href="../privacy/">Privacy Policy</a> · <a href="../support/">Support</a>
+  </footer>
+
+</body>
+</html>

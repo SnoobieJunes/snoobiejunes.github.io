@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Schlr &amp; Triviant</title>
+<meta name="description" content="What Schlr and Triviant collect (almost nothing), where it goes, and why.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #faf9f7;
+    --fg: #1c1b22;
+    --muted: #5c5a66;
+    --card: #ffffff;
+    --border: rgba(28, 27, 34, 0.1);
+    --accent: #4f46e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131218;
+      --fg: #ececf1;
+      --muted: #a3a1ad;
+      --card: #1d1c24;
+      --border: rgba(236, 236, 241, 0.12);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; }
+  header { padding: 4rem 0 1.5rem; }
+  header h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); letter-spacing: -0.02em; }
+  header p { color: var(--muted); margin-top: 0.75rem; }
+  main { padding-bottom: 3rem; }
+  section {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem 1.75rem; margin-top: 1.25rem;
+  }
+  h2 { font-size: 1.15rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  p + p, ul { margin-top: 0.6rem; }
+  ul { padding-left: 1.2rem; }
+  li + li { margin-top: 0.35rem; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  footer { padding: 2rem 0 3.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Privacy Policy</h1>
+    <p>For <strong>Schlr</strong> and <strong>Triviant</strong> · Effective August 7, 2026</p>
+  </header>
+  <main>
+    <section>
+      <h2>The short version</h2>
+      <p>Both apps run without accounts, without ads, without analytics, and without any
+      third-party code. There is nothing to sign up for and nothing that follows you around.
+      What little leaves your device is anonymous quiz content shared with other players.</p>
+    </section>
+
+    <section>
+      <h2>What is shared, and with whom</h2>
+      <ul>
+        <li><strong>The shared question bank.</strong> Both apps draw questions from — and
+        contribute to — a shared, public question pool (Apple iCloud/CloudKit). What goes up is
+        content only: question text, answer options, whether a question was answered correctly,
+        and problem reports ("flags"). None of it is tied to your name, email, or Apple
+        Account; contributions are keyed by the question itself, not by you.</li>
+        <li><strong>Flags carry an anonymous one-way code</strong> derived from the app
+        installation and the specific question, so the same install can't flag one question
+        repeatedly. It can't be turned back into anything about you or your device, isn't
+        reused across questions, and is never joined with any personal information.</li>
+        <li><strong>Game Center (Triviant only).</strong> Online matches and leaderboards use
+        Apple's Game Center. Triviant sees your anonymized Game Center player ID and display
+        name — only to run the match and post scores. Game Center itself is governed by
+        <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</li>
+        <li><strong>Nearby play (Triviant)</strong> uses the local network / peer-to-peer radio
+        between devices in the same room. Game data travels device-to-device and is not sent to
+        any server by the app.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>On-device intelligence</h2>
+      <p>Question generation and checking run on Apple Intelligence — on your device, or
+      through Apple's Private Cloud Compute, which is designed so that no one (including us)
+      can read your requests. If you configure your own AI provider in Settings, your prompts
+      go to <em>that</em> endpoint with <em>your</em> API key, stored in your device's
+      Keychain and sent nowhere else.</p>
+    </section>
+
+    <section>
+      <h2>What we never collect</h2>
+      <ul>
+        <li>No accounts, passwords, emails, or contact lists.</li>
+        <li>No location, no advertising identifiers, no tracking of any kind.</li>
+        <li>No analytics or crash-reporting SDKs — there is no third-party code at all.</li>
+      </ul>
+      <p class="muted">Your learning profile — topics, progress, ratings — lives on your
+      device (and in your personal iCloud backup, under your control).</p>
+    </section>
+
+    <section>
+      <h2>Deleting your data</h2>
+      <p>Deleting an app deletes its on-device data. Because shared-bank contributions are
+      anonymous, they cannot be traced back to you — or by us to delete selectively; flags and
+      answer counts simply age out as questions are retired. To ask about anything here,
+      email <a href="mailto:leroy@auston.org">leroy@auston.org</a>.</p>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <p>If this policy changes, the new version will be posted at this address with an
+      updated effective date.</p>
+    </section>
+  </main>
+  <footer>
+    <a href="../">Apps by SnoobieJunes</a> · <a href="../schlr/">Schlr</a> ·
+    <a href="../triviant/">Triviant</a> · <a href="../support/">Support</a>
+  </footer>
+</div>
+</body>
+</html>

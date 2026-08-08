@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apps by SnoobieJunes</title>
+<meta name="description" content="Small, honest iOS apps. No accounts, no ads, no tracking.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #faf9f7;
+    --fg: #1c1b22;
+    --muted: #5c5a66;
+    --card: #ffffff;
+    --border: rgba(28, 27, 34, 0.1);
+    --schlr: #4f46e5;
+    --schlr-2: #312e81;
+    --triviant: #9333ea;
+    --triviant-2: #581c87;
+    --gallows: #7a6a52;
+    --gallows-2: #4a3f30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131218;
+      --fg: #ececf1;
+      --muted: #a3a1ad;
+      --card: #1d1c24;
+      --border: rgba(236, 236, 241, 0.12);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
+  header { padding: 5rem 0 3rem; text-align: center; }
+  header h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.02em; }
+  header p { color: var(--muted); max-width: 34em; margin: 1rem auto 0; font-size: 1.1rem; }
+  .apps { display: grid; gap: 1.5rem; padding-bottom: 4rem; }
+  @media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } .apps .gallows { grid-column: 1 / -1; } }
+  .app-card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .app-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+  .app-icon {
+    width: 64px; height: 64px; border-radius: 15px; margin-bottom: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.9rem; font-weight: 700; color: #fff;
+  }
+  .schlr .app-icon { background: linear-gradient(135deg, var(--schlr), var(--schlr-2)); }
+  .triviant .app-icon { background: linear-gradient(135deg, var(--triviant), var(--triviant-2)); }
+  .gallows .app-icon { background: linear-gradient(135deg, var(--gallows), var(--gallows-2)); font-size: 1.5rem; }
+  .app-card h2 { font-size: 1.4rem; letter-spacing: -0.01em; }
+  .app-card .tag { color: var(--muted); font-size: 0.95rem; margin: 0.15rem 0 0.75rem; }
+  .app-card p.blurb { font-size: 0.98rem; }
+  .app-card .go { display: inline-block; margin-top: 1rem; font-weight: 600; font-size: 0.95rem; }
+  .schlr .go { color: var(--schlr); }
+  .triviant .go { color: var(--triviant); }
+  .gallows .go { color: var(--gallows); }
+  .status {
+    display: inline-block; margin-left: 0.5rem; font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 99px; padding: 0.15rem 0.6rem; vertical-align: middle;
+  }
+  .ethos {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0; text-align: center; color: var(--muted); font-size: 1rem;
+  }
+  .ethos strong { color: var(--fg); }
+  footer { padding: 2.5rem 0 3.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Apps by SnoobieJunes</h1>
+    <p>Small, carefully-made iOS apps. Built by one person (and a very patient AI pair programmer), designed to respect your time and your privacy.</p>
+  </header>
+
+  <main class="apps">
+    <a class="app-card schlr" href="schlr/">
+      <div class="app-icon">S</div>
+      <h2>Schlr <span class="status">TestFlight soon</span></h2>
+      <p class="tag">Learn anything, at exactly your level.</p>
+      <p class="blurb">Type any topic and get an adaptive, fact-checked quiz that calibrates to your actual ability — then fall down a rabbit hole of lessons and related topics.</p>
+      <span class="go">Learn more &rarr;</span>
+    </a>
+
+    <a class="app-card triviant" href="triviant/">
+      <div class="app-icon">T</div>
+      <h2>Triviant <span class="status">TestFlight soon</span></h2>
+      <p class="tag">Trivia with the people in the room — or across it.</p>
+      <p class="blurb">Ranked 1-on-1 online matches, in-person trivia nights over local Wi-Fi with a room code, and multi-round tournaments. Same engine as Schlr, sharper elbows.</p>
+      <span class="go">Learn more &rarr;</span>
+    </a>
+
+    <a class="app-card gallows" href="https://snoobiejunes.github.io">
+      <div class="app-icon">&spades;</div>
+      <h2>The Gallow's Way <span class="status">On the App Store</span></h2>
+      <p class="tag">A card game of wit, strategy, and a bit of luck.</p>
+      <p class="blurb">The one that started it — our family card game, brought to iOS. Easy to learn, cutthroat to master.</p>
+      <span class="go">Visit the site &rarr;</span>
+    </a>
+  </main>
+
+  <div class="ethos">
+    <p><strong>The house rules, for every app here:</strong> no accounts, no ads, no analytics, no tracking. Your data stays yours.</p>
+  </div>
+
+  <footer>
+    <p>Questions or trouble? <a href="mailto:leroy@auston.org">leroy@auston.org</a></p>
+    <p>&copy; 2026 SnoobieJunes</p>
+    · <a href="privacy/">Privacy Policy</a> · <a href="support/">Support</a>
+  </footer>
+</div>
+
+</body>
+</html>

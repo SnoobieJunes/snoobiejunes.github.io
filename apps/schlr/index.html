@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schlr — learn anything, at exactly your level</title>
+<meta name="description" content="Type any topic. Schlr builds a fact-checked quiz that adapts to you. No accounts, no ads, no tracking.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8f8fc;
+    --fg: #191826;
+    --muted: #5b5970;
+    --card: #ffffff;
+    --border: rgba(25, 24, 38, 0.1);
+    --accent: #4f46e5;
+    --accent-deep: #312e81;
+    --accent-soft: rgba(79, 70, 229, 0.1);
+    --hero-grad: linear-gradient(160deg, #eef0ff 0%, #f8f8fc 55%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121120;
+      --fg: #eceaf6;
+      --muted: #a5a2bd;
+      --card: #1c1b2e;
+      --border: rgba(236, 234, 246, 0.12);
+      --accent: #818cf8;
+      --accent-deep: #4f46e5;
+      --accent-soft: rgba(129, 140, 248, 0.14);
+      --hero-grad: linear-gradient(160deg, #1a1936 0%, #121120 55%);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--accent); }
+  nav { padding: 1.25rem 0; font-size: 0.95rem; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--fg); }
+
+  .hero-bg { background: var(--hero-grad); }
+  .hero {
+    display: grid; gap: 2.5rem; align-items: center;
+    padding: 3rem 0 4rem;
+  }
+  @media (min-width: 760px) { .hero { grid-template-columns: 1.15fr 1fr; } }
+  .badge {
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 99px; padding: 0.3rem 0.85rem; margin-bottom: 1.25rem;
+  }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.1; letter-spacing: -0.025em; }
+  h1 .accent { color: var(--accent); }
+  .lede { font-size: 1.2rem; color: var(--muted); margin: 1.25rem 0 2rem; max-width: 30em; }
+  .cta {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 1.05rem;
+    color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    padding: 0.85rem 1.8rem; border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+  }
+  .cta:hover { filter: brightness(1.08); }
+  .cta-note { display: block; margin-top: 0.7rem; font-size: 0.85rem; color: var(--muted); }
+
+  /* Real screenshots */
+  .shot {
+    display: block; width: 100%; height: auto;
+    border-radius: 24px; border: 1px solid var(--border);
+    box-shadow: 0 18px 50px rgba(30, 27, 75, 0.25);
+  }
+  .hero .shot { max-width: 300px; margin: 0 auto; }
+  .gallery { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  @media (min-width: 640px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+  .gallery figure { margin: 0; }
+  .gallery figcaption {
+    font-size: 0.85rem; color: var(--muted); text-align: center; margin-top: 0.6rem;
+  }
+
+  section { padding: 3.5rem 0; }
+  section + section { border-top: 1px solid var(--border); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .kicker { color: var(--accent); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .section-lede { color: var(--muted); max-width: 40em; margin-bottom: 2rem; }
+  .grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .grid.three { grid-template-columns: 1fr 1fr 1fr; } }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .feature h3 { font-size: 1.08rem; margin-bottom: 0.35rem; }
+  .feature p { font-size: 0.95rem; color: var(--muted); }
+
+  .steps { display: grid; gap: 1.5rem; counter-reset: step; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step { counter-increment: step; }
+  .step::before {
+    content: counter(step);
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.8rem;
+  }
+  .step h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .step p { font-size: 0.92rem; color: var(--muted); }
+
+  .final { text-align: center; }
+  .final h2 { margin-bottom: 0.75rem; }
+  .final p { color: var(--muted); max-width: 32em; margin: 0 auto 2rem; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0 3.5rem; color: var(--muted); font-size: 0.9rem; text-align: center;
+  }
+  footer p { margin-bottom: 0.4rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+
+<div class="hero-bg">
+  <div class="wrap">
+    <nav><a href="../">&larr; All apps</a></nav>
+    <div class="hero">
+      <div>
+        <span class="badge">From the maker of The Gallow's Way</span>
+        <h1>Learn anything, at <span class="accent">exactly your level</span>.</h1>
+        <p class="lede">Type a topic — any topic — and Schlr quizzes you on it. It figures out what you know, keeps the questions right at the edge of it, and fact-checks everything before you see it.</p>
+        <a class="cta" href="#testflight">Join the TestFlight beta</a>
+        <span class="cta-note">Free. No account. iOS 26 or later.</span>
+      </div>
+      <div>
+        <img class="shot" src="../assets/schlr-quiz.jpg" width="660" height="1434"
+             alt="A Schlr quiz on The Solar System asking which planet is the largest">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="features">
+    <p class="kicker">What it does</p>
+    <h2>A quiz that pays attention</h2>
+    <p class="section-lede">Most quiz apps ask everyone the same questions. Schlr rates you and every question on the same scale — like chess ratings — and picks each next question so you're stretched, not stuck.</p>
+    <div class="grid three">
+      <div class="feature">
+        <h3>It finds your level</h3>
+        <p>Every answer nudges your rating and the question's. The quiz stays hard enough to teach you something, easy enough that you keep going.</p>
+      </div>
+      <div class="feature">
+        <h3>Every question is fact-checked</h3>
+        <p>A second, independent AI pass has to confirm each question before it counts. If the checker isn't sure, the question is thrown out.</p>
+      </div>
+      <div class="feature">
+        <h3>Explore mode</h3>
+        <p>Productive doomscrolling. Read a short lesson checked against real sources, get quizzed on it, then follow a thread to the next topic. Repeat until bedtime.</p>
+      </div>
+      <div class="feature">
+        <h3>An honest report card</h3>
+        <p>See where you stand across topics. Acing hard questions counts for more than a streak of easy ones.</p>
+      </div>
+      <div class="feature">
+        <h3>Private by design</h3>
+        <p>The AI runs on your iPhone, or on Apple's Private Cloud Compute. Prefer your own model? Point Schlr at any endpoint — the key never leaves your Keychain.</p>
+      </div>
+      <div class="feature">
+        <h3>A shared question bank</h3>
+        <p>Good questions get pooled, so every device gets them instantly — even older phones that can't run the AI, even offline.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="explore">
+    <p class="kicker">See it</p>
+    <h2>Real screens, real questions</h2>
+    <p class="section-lede">These are actual screenshots — the questions were generated and fact-checked by the app while we took them.</p>
+    <div class="gallery">
+      <figure>
+        <img class="shot" src="../assets/schlr-home.jpg" width="660" height="1434"
+             alt="Schlr home screen with a topic field and recent topics">
+        <figcaption>Type a topic. That's the onboarding.</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="../assets/schlr-answer.jpg" width="660" height="1434"
+             alt="An answered question marked correct, with an explanation">
+        <figcaption>Every answer comes with the why.</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="../assets/schlr-lesson.jpg" width="660" height="1434"
+             alt="An Explore lesson about octopuses with verified facts cited to Wikipedia">
+        <figcaption>Explore lessons cite their sources.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="how">
+    <p class="kicker">How it works</p>
+    <h2>Type a topic. That's it.</h2>
+    <div class="steps" style="margin-top:2rem;">
+      <div class="step">
+        <h3>Pick anything</h3>
+        <p>"Roman aqueducts." "Baking chemistry." "The Meiji Restoration." If you can name it, you can study it.</p>
+      </div>
+      <div class="step">
+        <h3>Answer questions</h3>
+        <p>The quiz calibrates as you go and locks onto your level. Keep going as long as you like — or fall down an Explore rabbit hole.</p>
+      </div>
+      <div class="step">
+        <h3>Fix what's broken</h3>
+        <p>Bad question? Flag it or swap it. Your feedback feeds the shared bank, so the whole thing gets better as people use it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <p class="kicker">The fine print, up front</p>
+    <h2>Honest about the AI. Boring about your data.</h2>
+    <div class="grid" style="margin-top:2rem;">
+      <div class="feature">
+        <h3>Questions are AI-generated — and we say so</h3>
+        <p>The app discloses it. The reason to trust it anyway: nothing is published unless an independent fact-check stands behind it.</p>
+      </div>
+      <div class="feature">
+        <h3>No accounts, no ads, no tracking</h3>
+        <p>No sign-up. No analytics. No third-party code at all. The only thing that leaves your device is anonymous question content for the shared bank.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="testflight">
+    <h2>Be an early Schlr</h2>
+    <p>Early testers shape the question bank everyone else inherits. Your flags and answers literally make the app better.</p>
+    <!-- TODO: replace # with the real TestFlight public link when the beta opens -->
+    <a class="cta" href="mailto:leroy@auston.org?subject=TestFlight%20beta%20%E2%80%94%20Schlr">Request a TestFlight invite</a>
+    <span class="cta-note" style="display:block; margin-top:0.7rem;">Link coming soon &middot; requires iOS 26+</span>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Schlr</strong> &middot; an app by SnoobieJunes &middot; <a href="../">all apps</a> &middot; sibling: <a href="../triviant/">Triviant</a></p>
+    <p>No accounts. No ads. No tracking. Questions are AI-generated and independently fact-checked.</p>
+    <p>Support: <a href="mailto:leroy@auston.org">leroy@auston.org</a> &middot; &copy; 2026 SnoobieJunes</p>
+  </div>
+  · <a href="../privacy/">Privacy Policy</a> · <a href="../support/">Support</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — Schlr &amp; Triviant</title>
+<meta name="description" content="Get help with Schlr and Triviant: contact, common questions, and how to report a bad question.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #faf9f7;
+    --fg: #1c1b22;
+    --muted: #5c5a66;
+    --card: #ffffff;
+    --border: rgba(28, 27, 34, 0.1);
+    --accent: #4f46e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131218;
+      --fg: #ececf1;
+      --muted: #a3a1ad;
+      --card: #1d1c24;
+      --border: rgba(236, 236, 241, 0.12);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; }
+  header { padding: 4rem 0 1.5rem; }
+  header h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); letter-spacing: -0.02em; }
+  header p { color: var(--muted); margin-top: 0.75rem; }
+  main { padding-bottom: 3rem; }
+  section {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem 1.75rem; margin-top: 1.25rem;
+  }
+  h2 { font-size: 1.15rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  p + p, ul { margin-top: 0.6rem; }
+  ul { padding-left: 1.2rem; }
+  li + li { margin-top: 0.35rem; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  .cta {
+    display: inline-block; margin-top: 0.9rem; padding: 0.6rem 1.2rem;
+    background: var(--accent); color: #fff; text-decoration: none;
+    border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+  }
+  footer { padding: 2rem 0 3.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Support</h1>
+    <p>For <strong>Schlr</strong> and <strong>Triviant</strong> · one page, both apps</p>
+  </header>
+  <main>
+    <section>
+      <h2>Get in touch</h2>
+      <p>Both apps are made by one person, so support is simple: email, and the developer
+      answers. Include the app name, what you were doing, and what you expected to happen.
+      Screenshots help a lot.</p>
+      <p class="muted">On a TestFlight build, you can also take a screenshot and choose
+      "Share Beta Feedback" — that sends your notes (and the screenshot) straight through
+      TestFlight.</p>
+      <a class="cta" href="mailto:leroy@auston.org?subject=Support%20%E2%80%94%20Schlr%20%2F%20Triviant">Email leroy@auston.org</a>
+    </section>
+
+    <section>
+      <h2>A question was wrong, unfair, or off-topic</h2>
+      <p>Look for the flag: <strong>Report a problem</strong> in Schlr (on the question screen
+      and the scorecard), <strong>Report this question</strong> in Triviant (on every answer
+      screen). Reporting keeps that question from coming back to you, and accumulated reports
+      get bad questions reviewed and retired from the shared bank — flagging genuinely helps
+      other players too.</p>
+    </section>
+
+    <section>
+      <h2>Schlr says Apple Intelligence isn't available</h2>
+      <p>Schlr generates quizzes with Apple Intelligence, so it needs a device that supports it,
+      with Apple Intelligence turned on in Settings. Two things to know:</p>
+      <ul>
+        <li>Apple Intelligence can take a minute or two to become ready after a restart —
+        quitting and reopening the app usually clears the message.</li>
+        <li>Without it, Schlr still works with a built-in starter set of questions, and you can
+        plug in your own AI provider instead (below).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Using your own AI provider</h2>
+      <p>Both apps let you point question generation at your own endpoint — anything speaking
+      the OpenAI-compatible or Anthropic API — via Settings → AI provider → Custom endpoint.
+      Enter the endpoint URL (https, or a local address for on-network servers) and your API key — the key is stored in your device Keychain and sent only to
+      the endpoint you configured. Use "Test connection" on that screen to verify the setup
+      before playing.</p>
+    </section>
+
+    <section>
+      <h2>Trivia night can't see other players</h2>
+      <p>In-person play connects devices directly, with no internet needed. If players don't
+      appear: make sure everyone is in the same room on the same Wi-Fi network, that each
+      device allowed the <strong>Local Network</strong> permission when the app asked (check
+      Settings → Privacy &amp; Security → Local Network if it was declined), and that everyone
+      enters the same room code.</p>
+    </section>
+
+    <section>
+      <h2>Your data</h2>
+      <p>There are no accounts, and your learning profile lives on your device. What little is
+      shared (anonymous question content), and how to ask about deleting anything, is covered in
+      the <a href="../privacy/">privacy policy</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <a href="../">Apps by SnoobieJunes</a> · <a href="../schlr/">Schlr</a> ·
+    <a href="../triviant/">Triviant</a> · <a href="../privacy/">Privacy Policy</a>
+  </footer>
+</div>
+</body>
+</html>
