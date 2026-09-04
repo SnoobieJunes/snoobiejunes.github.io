@@ -1,0 +1,970 @@
+/*
+ * Triplicate, the design system for auston.org (PLAN.md section 2).
+ * One stylesheet. No imports, no network fonts, no inline styles anywhere,
+ * so the strict CSP in section 5 holds.
+ *
+ * Order in this file: tokens, base, type, links, forms, focus, placeholders,
+ * dark mode, reduced motion, print. Component styles (ticket cards,
+ * perforation rules, stamp, drawer, buttons, badges) join below in T07.
+ *
+ * Palette: work order paper (PLAN-2.md section 4). Manila, salmon carbon,
+ * dull yellow duplicate. Every pair is measured under R15 in PROGRESS.md and
+ * again by TestPaletteMeetsItsContrastFloors on every run, so these numbers
+ * cannot drift away from the tokens:
+ *   --rule reads 4.00:1 on paper now, above the 3:1 floor for the edge of a
+ *   control, which is why it can draw a printed line. Controls stay outlined
+ *   in --carbon, which is stronger still.
+ *   Text on a stamp surface is --paper in both modes, never white: white on
+ *   the dark stamp measured 2.81:1 in round one, and a gate check now refuses
+ *   any white text colour outside the print block.
+ *
+ * Shared class names, so later tasks stay consistent: .wrap, .skip,
+ * .site-head, .site-foot, .prose, .meta, .field, .choice, .hint, .error,
+ * .todo, .vh.
+ */
+
+/* 2.2 Tokens */
+:root {
+  color-scheme: light;
+
+  --paper: #F1E6CC;
+  --ink: #2B2118;
+  --carbon: #5C4A2E;
+  --tint-dup: #E9D8A0;
+  --tint-tri: #F1CBB9;
+  --stamp: #A32418;
+  --rule: #826D4A;
+
+  /* 2.3 Type: ticket voice and prose voice, both from the system */
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --prose: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Base 16px on 1.25 steps */
+  --t-sm: 0.8rem;
+  --t-base: 1rem;
+  --t-md: 1.25rem;
+  --t-lg: 1.5625rem;
+  --t-h1: clamp(2rem, 6vw, 3.25rem);
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 1rem;
+  --sp-4: 1.5rem;
+  --sp-5: 2.5rem;
+
+  --measure: 68ch;
+  --tap: 2.75rem; /* 44px minimum target, HC5 */
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--prose);
+  font-size: var(--t-base);
+  line-height: 1.55;
+  text-underline-offset: 0.15em;
+}
+
+.wrap {
+  width: min(100% - 2rem, 64rem);
+  margin-inline: auto;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--tint-dup);
+  color: var(--ink);
+}
+
+/* Type */
+h1,
+h2 {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0 0 var(--sp-3);
+}
+
+h1 {
+  font-size: var(--t-h1);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: var(--t-lg);
+  letter-spacing: 0.06em;
+}
+
+h3 {
+  font-family: var(--mono);
+  font-size: var(--t-md);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin: var(--sp-4) 0 var(--sp-2);
+}
+
+p,
+li {
+  max-width: var(--measure);
+}
+
+p {
+  margin: 0 0 var(--sp-3);
+}
+
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: var(--sp-1);
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+/* Ticket voice for metadata: SKUs, terms, dates, footer lines */
+.meta {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+  color: var(--carbon);
+}
+
+/* Links: ink text, stamp underline. --stamp never carries body text (2.2) */
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--stamp);
+  text-decoration-thickness: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 3px;
+}
+
+/* Focus: one visible ring everywhere, 3px stamp with offset (section 7).
+   :focus first so a browser without :focus-visible still shows a ring, then
+   the ring is dropped only where the browser does understand both. */
+:focus {
+  outline: 3px solid var(--stamp);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--stamp);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  z-index: 10;
+  transform: translateY(-200%);
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--stamp);
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--mono);
+  text-decoration: none;
+}
+
+.skip:focus {
+  transform: translateY(0);
+}
+
+/* Forms. Controls are outlined in --carbon: --rule is a decorative hairline
+   at 1.62:1 and would fail the 3:1 floor for a control edge. */
+.field {
+  margin-bottom: var(--sp-4);
+}
+
+label,
+.field > legend {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--carbon);
+  margin-bottom: var(--sp-1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  max-width: 34rem;
+  min-height: var(--tap);
+  padding: var(--sp-2);
+  font-family: var(--mono);
+  font-size: var(--t-base);
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--carbon);
+  border-radius: 0;
+}
+
+textarea {
+  min-height: 8rem;
+  line-height: 1.5;
+  font-family: var(--prose);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--ink);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--carbon);
+  opacity: 1;
+}
+
+/* One checkbox or radio and its label, on a 44px row */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--tap);
+}
+
+.choice label {
+  font-family: var(--prose);
+  font-size: var(--t-base);
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink);
+  margin: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  /* 24px exactly, the WCAG 2.5.8 minimum, so the control itself passes even
+     though clicking its label works too. */
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  flex: none;
+  accent-color: var(--stamp);
+}
+
+fieldset {
+  margin: 0 0 var(--sp-4);
+  padding: 0;
+  border: 0;
+}
+
+button {
+  font-family: var(--mono);
+  font-size: var(--t-base);
+  min-height: var(--tap);
+}
+
+.hint {
+  font-size: var(--t-sm);
+  color: var(--carbon);
+  max-width: var(--measure);
+  margin: var(--sp-1) 0 0;
+}
+
+.req {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  color: var(--carbon);
+}
+
+/* Errors read in ink with a stamp edge, since stamp is not a body text color */
+.error {
+  color: var(--ink);
+  font-weight: 600;
+  border-left: 4px solid var(--stamp);
+  padding-left: var(--sp-2);
+  margin: var(--sp-2) 0;
+  max-width: var(--measure);
+}
+
+/* Placeholders. Every unfinished token on the page wears this, so nothing
+   unfinished can ever look finished (T28 item 6). */
+.todo {
+  font-family: var(--mono);
+  font-size: 0.95em;
+  background: var(--tint-dup);
+  color: var(--ink);
+  border-bottom: 2px dashed var(--stamp);
+  padding: 0 0.25em;
+}
+
+/* Passages. Copy Auston is writing himself, standing in as Latin so the
+   layout reads finished. Unlike .todo this must not shout: a faint printed
+   rule down the left is enough to say the words are not real yet
+   (PLAN-2.md 3.1). */
+.lorem {
+  border-left: 2px solid var(--rule);
+  padding-left: 0.4em;
+}
+
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ *
+ * Components (T07). Every device below encodes real structure: line
+ * items are line items, the perforation separates sections, the stamp
+ * marks a received job. None of it is decoration for its own sake.
+ * ------------------------------------------------------------------ */
+
+/* Header: sticky, short, and out of the way */
+.site-head {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+}
+
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2) var(--sp-3);
+  min-height: var(--tap);
+  padding: var(--sp-1) 0;
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav li {
+  margin: 0;
+  max-width: none;
+}
+
+.site-nav a {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* A link standing on its own is a tap target, not a sentence: section 7 wants
+   44px, and WCAG 2.5.8 exempts only links inside a block of text, which these
+   are not. Links inside prose keep their natural size under that exception. */
+.site-nav a,
+.badge a,
+.links a,
+.entry .meta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 var(--sp-1);
+}
+
+/* Perforation rule: the tear line between sections */
+.perf {
+  border: 0;
+  border-top: 2px dashed var(--rule);
+  margin: var(--sp-5) 0;
+}
+
+/* Tint sections: paper, yellow duplicate, pink triplicate */
+.tint {
+  background: var(--tint-dup);
+  padding: var(--sp-4) 0;
+}
+
+.tint-tri {
+  background: var(--tint-tri);
+}
+
+/* Buttons. Text on a stamp surface is --paper, never white (D22). The
+   pressed state changes the label text too, so color is never the only
+   signal that a service is on the work order. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: var(--tap);
+  padding: 0 var(--sp-3);
+  font-family: var(--mono);
+  font-size: var(--t-base);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--stamp);
+  border: 2px solid var(--stamp);
+  border-left-style: dashed;
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Tear-off edge (PLAN-2.md section 5). A button should read as something torn
+   off a carbon form: a dashed left edge with a punched column of holes down
+   it. The holes are a radial-gradient tile on an absolutely positioned
+   ::before, drawn in currentColor so they read as paper punched out of the
+   stamp on a primary button and as printed dots on a quiet one.
+
+   Deliberately not mask-image and not clip-path: both take the border box as
+   their reference and clip everything the element paints, the 3px focus ring
+   included, which section 7 and the accessibility audit both require. A
+   gradient paints inside the element and leaves the outline alone.
+
+   No hover or press motion here: 2.5 allows one orchestrated moment and the
+   RECEIVED stamp has it. Everything the button needs to be a button lives on
+   .btn itself, so a browser that cannot draw the gradient simply shows a
+   plain one. */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  left: 0.28rem;
+  width: 3px;
+  background: radial-gradient(circle at 1.5px 3px, currentColor 1.5px, transparent 1.6px);
+  background-size: 3px 9px;
+  opacity: 0.75;
+}
+
+.btn:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.btn-quiet {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--carbon);
+}
+
+.btn-quiet:hover {
+  color: var(--ink);
+  background: var(--tint-dup);
+  border-color: var(--ink);
+}
+
+.btn[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* Count badge on the work order button */
+.count {
+  display: inline-block;
+  min-width: 1.75rem;
+  padding: 0 0.35rem;
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  text-align: center;
+  color: var(--paper);
+  background: var(--stamp);
+  border: 2px solid var(--stamp);
+}
+
+/* Ticket cards: the shop wall, one line item per card */
+.tickets {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 720px) {
+  .tickets {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ticket {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  background: var(--tint-dup);
+  border: 2px solid var(--ink);
+}
+
+.ticket-sku {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.12em;
+  color: var(--carbon);
+}
+
+.ticket-name {
+  font-family: var(--mono);
+  font-size: var(--t-md);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ticket p {
+  margin: 0;
+  max-width: none;
+}
+
+.ticket-tagline {
+  font-weight: 700;
+  color: var(--carbon);
+}
+
+.ticket ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.ticket li {
+  max-width: none;
+}
+
+/* Typed steps, work history, and shipped projects: same ticket line shape */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+}
+
+.steps li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: var(--sp-3);
+}
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-size: var(--t-lg);
+  font-weight: 700;
+  color: var(--stamp);
+}
+
+.entry {
+  padding: var(--sp-3) 0;
+  border-bottom: 1px dashed var(--rule);
+  max-width: var(--measure);
+}
+
+.entry h3 {
+  margin: 0 0 var(--sp-1);
+}
+
+/* Contact list: labels and addresses on one wrapping row */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+}
+
+.links li {
+  max-width: none;
+  margin: 0;
+}
+
+.entry p {
+  margin: var(--sp-1) 0 0;
+}
+
+/* While the drawer is open the page behind it does not scroll. Set with a
+   class rather than an inline style, so the strict CSP stays intact. */
+.wo-open {
+  overflow: hidden;
+}
+
+/* 2.4 The work order drawer: a numbered carbon form that slides in */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: min(24rem, 100%);
+  padding: var(--sp-3);
+  overflow-y: auto;
+  background: var(--tint-tri);
+  border-left: 3px dashed var(--stamp);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 150ms ease-out, visibility 0s linear 150ms;
+}
+
+/* visibility, not display, so the panel leaves the tab order when closed
+   while the slide still animates on the way in */
+.drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 150ms ease-out, visibility 0s;
+}
+
+.drawer h2 {
+  font-size: var(--t-md);
+  margin-bottom: var(--sp-2);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-out, visibility 0s linear 150ms;
+}
+
+.scrim.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 150ms ease-out, visibility 0s;
+}
+
+.wo-list {
+  margin: 0 0 var(--sp-3);
+  padding: 0;
+  list-style: none;
+}
+
+.wo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  border-bottom: 1px dashed var(--carbon);
+  max-width: none;
+}
+
+.wo-sku {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.1em;
+  color: var(--carbon);
+}
+
+.wo-total {
+  padding-top: var(--sp-2);
+  border-top: 2px solid var(--ink);
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.wo-empty {
+  color: var(--carbon);
+}
+
+/* 2.4 and 2.5 The RECEIVED stamp. Large mono type, so --stamp is a legal
+   text color here at 6.34:1 light and 6.22:1 dark. */
+.stamp {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--mono);
+  font-size: var(--t-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--stamp);
+  border: 3px solid var(--stamp);
+  transform: rotate(-4deg);
+  animation: stamp-settle 250ms ease-out both;
+}
+
+@keyframes stamp-settle {
+  from {
+    transform: rotate(-4deg) scale(1.3);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(-4deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 2.6 Honesty badge footer */
+.site-foot {
+  margin-top: var(--sp-5);
+  padding: var(--sp-4) 0;
+  border-top: 2px dashed var(--rule);
+}
+
+.badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+  color: var(--carbon);
+  max-width: none;
+  padding: 0;
+  list-style: none;
+}
+
+.badge li {
+  max-width: none;
+  margin: 0;
+}
+
+/* 2.2 Dark: the carbon copy inversion */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --paper: #1B1610;
+    --ink: #F1E6CC;
+    --carbon: #C3AF88;
+    --tint-dup: #2C2416;
+    --tint-tri: #35231C;
+    --stamp: #FF8E72;
+    --rule: #8C7654;
+  }
+}
+
+/* 2.5 Motion: everything optional stops when the reader asks it to */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print: a work order should come out of a printer looking like one */
+@media print {
+  :root {
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --carbon: #333333;
+    --tint-dup: #FFFFFF;
+    --tint-tri: #FFFFFF;
+    --stamp: #000000;
+    --rule: #999999;
+  }
+
+  body {
+    background: #FFFFFF;
+    color: #000000;
+    font-size: 11pt;
+  }
+
+  .skip,
+  .site-nav,
+  .drawer,
+  .scrim,
+  .count,
+  .no-print {
+    display: none;
+  }
+
+  .site-head {
+    position: static;
+  }
+
+  .ticket,
+  .tint,
+  .tint-tri {
+    background: #FFFFFF;
+  }
+
+  .stamp {
+    animation: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--mono);
+    font-size: 9pt;
+  }
+
+  .field,
+  .choice {
+    break-inside: avoid;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select,
+  textarea {
+    border: 1px solid #000000;
+  }
+
+  .todo {
+    border-bottom: 1px dashed #000000;
+  }
+
+  /* On paper the rule is noise: the passage reads as the paragraph it is
+     standing in for. */
+  .lorem {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* The punched holes are a screen conceit. On paper they print as a grey
+     smudge inside the label, so the button goes back to a plain outline. */
+  .btn::before {
+    display: none;
+  }
+
+  .btn {
+    border: 1px solid #000000;
+    color: #000000;
+    background: #FFFFFF;
+  }
+}
+/* Card options: sub items with their own checkboxes, sharing the cart */
+.opts {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.opts legend {
+  font-family: var(--mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+  color: var(--carbon);
+  padding: 0;
+}
+
+.opts .hint {
+  font-size: var(--t-sm);
+  margin: 0 0 4px;
+}
+
+.opts .choice {
+  display: flex;
+  min-height: 0;
+  margin: 0 0 2px;
+  gap: 6px;
+  line-height: 1.3;
+  align-items: center;
+  margin-bottom: var(--sp-1);
+}
+
+/* Equal cards per row with the button pinned to the bottom edge */
+.ticket .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.choice.opt {
+  margin-left: var(--sp-3);
+}
+
+/* Eyebrow brand mark sits above the h1 so A-cubed reads as a badge, not a prefix jammed against the name. */
+.eyebrow{font-family:var(--mono);font-size:var(--t-md);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stamp);margin:0 0 var(--sp-1)}
+h1{text-wrap:balance;overflow-wrap:break-word}
+
+/* Work Product heads its own block inside #work so the gap below the rule matches the gap above Services. */
+#work h2:not(:first-child){margin-top:var(--sp-5)}
+#work-product{scroll-margin-top:var(--sp-4)}
+
+/* Options toggle reads as a control: bordered button with count and plus/minus. */
+details.opts{margin-top:auto}
+.ticket details.opts~.btn{margin-top:var(--sp-2)}
+details.opts>summary{list-style:none;cursor:pointer;display:inline-block;border:2px solid var(--ink);background:transparent;padding:6px 12px;font-family:var(--mono);font-size:var(--t-sm);font-weight:700;letter-spacing:.04em}
+details.opts>summary::-webkit-details-marker{display:none}
+details.opts>summary::before{content:"+ ";font-weight:700}
+details.opts[open]>summary::before{content:"- "}
+details.opts>summary:hover{background:var(--tint-tri)}
+details.opts>summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Headings and bold leads read salmon to break the body text. */
+h2{color:var(--stamp)}
+#work h3{color:var(--stamp)}
+.ticket-name{color:var(--stamp)}
+.ticket li strong{color:var(--stamp)}
+.timeline{border-left:2px dashed var(--rule);padding-left:var(--sp-3);margin:0 0 var(--sp-4)} .timeline .timeline-entry{border-bottom:0;padding:var(--sp-2) 0} .projs{margin-top:var(--sp-3)} .proj-name{color:var(--stamp);margin:0} .proj-links{margin-top:auto}
+.proj-links{margin-top:auto;border-top:0;padding-top:var(--sp-2)}
+.proj p{line-height:1.5}
+.ticket.proj .proj-links{margin-top:auto;border:0;padding:0}
+.proj-name{color:var(--stamp);margin:0}
+.projs{counter-reset:proj}
+.ticket.proj .proj-links{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:auto;border:0;padding:var(--sp-1) 0 0}
+.ticket.proj .proj-links a{display:inline-block;border:1px solid var(--ink);padding:6px 10px;font-family:var(--mono);font-size:var(--t-sm);text-decoration:underline;text-underline-offset:3px}
+.ticket.proj p{line-height:1.55}
+.proj-points{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:var(--sp-1)}
+.proj-points li{line-height:1.45}
+.proj-points li::marker{color:var(--stamp)}
+.ticket.proj{padding:var(--sp-4)}
+.ticket.proj{display:flex;flex-direction:column;gap:var(--sp-2)}
+.ticket.proj p{max-width:62ch}
+.ticket.proj .ticket-tagline{line-height:1.3}

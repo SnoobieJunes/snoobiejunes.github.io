@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    :root { color: #21243D }
+    .mark { fill: #B3231A }
+    @media (prefers-color-scheme: dark) {
+      :root { color: #ECEAF6 }
+      .mark { fill: #FF6A5E }
+    }
+  </style>
+  <path d="M3 8h26v16H3z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <path d="M11 8.5v15" stroke="currentColor" stroke-width="2" stroke-dasharray="2 3"/>
+  <path d="M15 14h9M15 19h6" stroke="currentColor" stroke-width="2"/>
+  <path class="mark" d="M22 3h7v7z"/>
+</svg>

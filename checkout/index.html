@@ -1,0 +1,276 @@
+
+<!doctype html>
+<html lang="en" data-count-label="items on your work order">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work order | Auston LeRoy</title>
+<meta name="description" content="Tell me what you need and when we can meet. This opens a work order and starts a conversation.">
+<link rel="canonical" href="https://auston.org/checkout/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work order | Auston LeRoy">
+<meta property="og:description" content="Tell me what you need and when we can meet. This opens a work order and starts a conversation.">
+<meta property="og:url" content="https://auston.org/checkout/">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1E6CC">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1B1610">
+<link rel="icon" href="/assets/favicon.svg?v=1c17d940" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/triplicate.css?v=058a1c56">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-head">
+<div class="wrap">
+<a class="wordmark" href="/">Auston LeRoy</a>
+<nav class="site-nav" aria-label="Main">
+<ul>
+<li><a href="/#services">Services</a></li>
+<li><a href="/#work-product">Work Product</a></li>
+<li><a href="/writing/">Writing</a></li>
+<li><a href="https://lerants.com">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+<li><a class="btn" id="wo-open" href="/checkout/" data-open-label="Open the work order">Work order</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="content" class="wrap">
+
+<h1>Work order</h1>
+<p class="prose"><span class="lorem" lang="la">Irure voluptate tempor, eiusmod culpa labore. Officia qui et culpa laborum atque, amet cillum reprehenderit sunt iusto consectetur.</span></p>
+
+
+<form class="wo-form" method="post" action="/api/inquiry" data-error-summary="A few things need fixing before this can go.">
+
+<div id="form-errors" class="error" role="status" aria-live="polite" hidden></div>
+
+<fieldset class="field">
+<legend>Add or Remove Service as needed</legend>
+<p class="hint">NOTE: This is for me guage the size of the project. Don&#39;t stress.</p>
+<div class="choice">
+<input type="checkbox" id="svc-AAA-01" name="services" value="AAA-01">
+<label for="svc-AAA-01"><span class="wo-sku">AAA-01</span> Anchor</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-01-O1" name="services" value="AAA-01-O1">
+<label for="copt-AAA-01-O1">Custom 5090 workstation build</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-01-O2" name="services" value="AAA-01-O2">
+<label for="copt-AAA-01-O2">Mac Studio Build</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-01-O3" name="services" value="AAA-01-O3">
+<label for="copt-AAA-01-O3">Goose orchestrator config</label>
+</div>
+<div class="choice">
+<input type="checkbox" id="svc-AAA-02" name="services" value="AAA-02">
+<label for="svc-AAA-02"><span class="wo-sku">AAA-02</span> Assemble</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O1" name="services" value="AAA-02-O1">
+<label for="copt-AAA-02-O1">Developer tools</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O2" name="services" value="AAA-02-O2">
+<label for="copt-AAA-02-O2">Custom websites</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O3" name="services" value="AAA-02-O3">
+<label for="copt-AAA-02-O3">Game ports</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O4" name="services" value="AAA-02-O4">
+<label for="copt-AAA-02-O4">Mobile apps</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O5" name="services" value="AAA-02-O5">
+<label for="copt-AAA-02-O5">Open source buildouts</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-02-O6" name="services" value="AAA-02-O6">
+<label for="copt-AAA-02-O6">Legacy systems conversion</label>
+</div>
+<div class="choice">
+<input type="checkbox" id="svc-AAA-03" name="services" value="AAA-03">
+<label for="svc-AAA-03"><span class="wo-sku">AAA-03</span> A³: Audit · Assess · Advise</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-03-O1" name="services" value="AAA-03-O1">
+<label for="copt-AAA-03-O1">Agentic security audit</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-03-O2" name="services" value="AAA-03-O2">
+<label for="copt-AAA-03-O2">Agentic development coaching</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-03-O3" name="services" value="AAA-03-O3">
+<label for="copt-AAA-03-O3">Legacy systems review</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-03-O4" name="services" value="AAA-03-O4">
+<label for="copt-AAA-03-O4">Workflow optimizations</label>
+</div>
+<div class="choice">
+<input type="checkbox" id="svc-AAA-04" name="services" value="AAA-04">
+<label for="svc-AAA-04"><span class="wo-sku">AAA-04</span> A³: Architect · Automate · Augment</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-04-O1" name="services" value="AAA-04-O1">
+<label for="copt-AAA-04-O1">System architecture review</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-04-O2" name="services" value="AAA-04-O2">
+<label for="copt-AAA-04-O2">Automation opportunity audit</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-04-O3" name="services" value="AAA-04-O3">
+<label for="copt-AAA-04-O3">Agentic workflow setup</label>
+</div>
+<div class="choice opt">
+<input type="checkbox" id="copt-AAA-04-O4" name="services" value="AAA-04-O4">
+<label for="copt-AAA-04-O4">Embedded build sprint</label>
+</div>
+</fieldset>
+
+<fieldset class="field">
+<legend>Who you are</legend>
+
+<div class="field">
+<label for="name">Your name <span class="req">(required)</span></label>
+<input type="text" id="name" name="name" autocomplete="name" required data-msg="I need a name to put on the work order.">
+</div>
+
+<div class="field">
+<label for="email">Email <span class="req">(required)</span></label>
+<input type="email" id="email" name="email" autocomplete="email" required data-msg="I need an email address so I can reply." data-msg-invalid="That email address does not look right. Check it and try again.">
+</div>
+
+<div class="field">
+<label for="org">Business or organization <span class="req">(optional)</span></label>
+<input type="text" id="org" name="org" autocomplete="organization">
+</div>
+</fieldset>
+
+<fieldset class="field" id="budget-group" data-msg="Pick the closest one so I can size the work.">
+<legend>How big is this piece of work <span class="req">(required)</span></legend>
+<p class="hint">Pick the closest one. It just helps me size a proposal, and nothing here is binding.</p>
+<div class="choice">
+<input type="radio" id="budget-exploring" name="budget" value="exploring" required>
+<label for="budget-exploring">A first look, nothing funded yet</label>
+</div>
+<div class="choice">
+<input type="radio" id="budget-one-project" name="budget" value="one-project" required>
+<label for="budget-one-project">A single defined piece of work</label>
+</div>
+<div class="choice">
+<input type="radio" id="budget-ongoing" name="budget" value="ongoing" required>
+<label for="budget-ongoing">Continuing work over months</label>
+</div>
+<div class="choice">
+<input type="radio" id="budget-funded-program" name="budget" value="funded-program" required>
+<label for="budget-funded-program">A program with a budget behind it</label>
+</div>
+<div class="choice">
+<input type="radio" id="budget-org-wide" name="budget" value="org-wide" required>
+<label for="budget-org-wide">A rollout across teams or sites</label>
+</div>
+<div class="choice">
+<input type="radio" id="budget-not-sure" name="budget" value="not-sure" required>
+<label for="budget-not-sure">Not sure yet</label>
+</div>
+</fieldset>
+
+<fieldset class="field" id="delivery-group" data-msg="Give me at least one window, or check the box and I will email you.">
+<legend>Delivery</legend>
+<p class="hint">Delivery is a meeting with me. Pacific time.</p>
+<div class="field">
+<label for="date-1">First choice: Date</label>
+<input type="date" id="date-1" name="date1">
+<label for="time-1">First choice: Time of day</label>
+<select id="time-1" name="time1">
+<option value="">Any time of day</option>
+<option value="morning">Morning</option>
+<option value="afternoon">Afternoon</option>
+<option value="evening">Evening</option>
+</select>
+</div>
+<div class="field">
+<label for="date-2">Second choice: Date</label>
+<input type="date" id="date-2" name="date2">
+<label for="time-2">Second choice: Time of day</label>
+<select id="time-2" name="time2">
+<option value="">Any time of day</option>
+<option value="morning">Morning</option>
+<option value="afternoon">Afternoon</option>
+<option value="evening">Evening</option>
+</select>
+</div>
+<div class="choice">
+<input type="checkbox" id="flexible" name="flexible" value="yes">
+<label for="flexible">Just email me and we&#39;ll find a time.</label>
+</div>
+<p class="hint">Give me at least one window, or check the box and I will email you.</p>
+</fieldset>
+
+<fieldset class="field">
+<legend>Details</legend>
+<label for="details">Infodump as much as you want.  Links, youtube videos, walls of text.  More detail, means I can prepare better. <span class="req">(optional)</span></label>
+<textarea id="details" name="details" rows="6"></textarea>
+</fieldset>
+
+
+<div class="vh" aria-hidden="true">
+<label for="company_website">Leave this field empty</label>
+<input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+</div>
+<input type="hidden" id="started" name="started" value="">
+
+<p class="prose">This only simulates an e-commerce transaction, no payment is taken.  I will reply with a plan and a quote.</p>
+<button class="btn" type="submit" data-sending="Sending">Send work order</button>
+</form>
+
+
+<template id="wo-success">
+<div class="wo-received">
+<p class="stamp">Received</p>
+<p class="meta">Work order <span data-wo-id></span></p>
+<p class="prose" tabindex="-1" data-wo-focus><span class="lorem" lang="la">Minim consectetur odio officia eiusmod et vero, occaecat corrupti culpa enim.</span></p>
+<p class="prose"><span class="lorem" lang="la">Odio duis occaecat dignissimos, proident adipiscing elit. Sed amet reprehenderit quas, ipsum sunt ex.</span></p>
+</div>
+</template>
+
+<template id="wo-failure">
+<div class="error">
+<p data-fail-text>That did not send. Nothing was lost, so try again in a moment.</p>
+<p><a data-mailto href="mailto:leroy@auston.org" data-subject="Work order">Or email your work order to me instead</a></p>
+</div>
+</template>
+
+</main>
+<footer class="site-foot">
+<div class="wrap">
+<ul class="badge">
+<li>This page weighs about 16 KB</li>
+<li>No trackers. No cookies. No third-party requests.</li>
+<li><a href="/colophon/">Served from a tablet on my desk</a></li>
+<li>MIT Licensed</li>
+</ul>
+</div>
+</footer>
+<template id="wo-template">
+<div class="scrim" data-wo-scrim></div>
+<aside class="drawer" id="wo-drawer" role="dialog" aria-modal="true" aria-labelledby="wo-title">
+<h2 id="wo-title">Work order</h2>
+<ul class="wo-list" data-wo-list data-remove-label="Remove"></ul>
+<p class="wo-empty" data-wo-empty>Nothing on it yet. Add a service and it shows up here.</p>
+<p class="wo-total">QUOTED AT MEETING</p>
+<div class="btn-row">
+<a class="btn" href="/checkout/" data-wo-checkout>CHECKOUT</a>
+<button class="btn btn-quiet" type="button" data-wo-close>Close</button>
+</div>
+</aside>
+</template>
+<script src="/assets/ticket.js?v=4113d6f1" defer></script>
+<script src="/assets/checkout.js?v=e412a5f6" defer></script>
+</body>
+</html>
