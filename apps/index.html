@@ -3,8 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apps by SnoobieJunes</title>
-<meta name="description" content="Small, honest apps. No accounts, no ads, no tracking.">
+<title>Apps by Auston LeRoy</title>
+<meta name="description" content="iPhone games, local-first tools, and a private network for you and your AI — built by Auston LeRoy. The Gallow's Way, Schlr, Triviant, Local Yokel, MOSIS, and Eldr. No accounts, no ads, no tracking.">
+<link rel="canonical" href="https://snoobiejunes.github.io/apps/">
+<meta name="author" content="Auston LeRoy">
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131218" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Auston LeRoy">
+<meta property="og:title" content="Apps by Auston LeRoy">
+<meta property="og:description" content="The Gallow's Way, Schlr, Triviant, Local Yokel, MOSIS, and Eldr. Small apps. No accounts, no ads, no tracking.">
+<meta property="og:url" content="https://snoobiejunes.github.io/apps/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apps by Auston LeRoy">
+<meta name="twitter:description" content="iPhone games, local-first tools, and a private network for you and your AI.">
+<meta name="twitter:creator" content="@austonion">
+<link rel="me" href="https://www.auston.org">
+<link rel="me" href="https://www.lerants.com">
+<link rel="me" href="https://github.com/SnoobieJunes">
+<link rel="me" href="https://x.com/austonion">
+<link rel="me" href="https://www.linkedin.com/in/austonleroy">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.auston.org/#auston",
+      "name": "Auston LeRoy",
+      "url": "https://www.auston.org",
+      "email": "leroy@auston.org",
+      "sameAs": [
+        "https://www.lerants.com",
+        "https://github.com/SnoobieJunes",
+        "https://x.com/austonion",
+        "https://www.linkedin.com/in/austonleroy"
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "Apps by Auston LeRoy",
+      "url": "https://snoobiejunes.github.io/apps/",
+      "description": "iPhone games, local-first tools, and a private network for you and your AI.",
+      "author": { "@id": "https://www.auston.org/#auston" },
+      "isPartOf": { "@id": "https://www.auston.org/#auston" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "The Gallow's Way", "url": "https://snoobiejunes.github.io/apps/thegallowsway/" },
+          { "@type": "ListItem", "position": 2, "name": "Schlr", "url": "https://snoobiejunes.github.io/apps/schlr/" },
+          { "@type": "ListItem", "position": 3, "name": "Triviant", "url": "https://snoobiejunes.github.io/apps/triviant/" },
+          { "@type": "ListItem", "position": 4, "name": "Local Yokel", "url": "https://snoobiejunes.github.io/apps/local-yokel/" },
+          { "@type": "ListItem", "position": 5, "name": "MOSIS", "url": "https://snoobiejunes.github.io/apps/mosis/" },
+          { "@type": "ListItem", "position": 6, "name": "Eldr", "url": "https://snoobiejunes.github.io/apps/eldr/" }
+        ]
+      }
+    }
+  ]
+}
+</script>
 <style>
   :root {
     color-scheme: light dark;
@@ -18,13 +75,12 @@
     --triviant: #9333ea;
     --triviant-2: #581c87;
     --gallows: #7a6a52;
-    --gallows-2: #4a3f30;
     --yokel: #a89880;
     --yokel-2: #1a1814;
-    --mosis: #7fc21e;
+    --mosis: #b8ff2e;
     --mosis-2: #0e1614;
-    --eldr: #6d8cff;
-    --eldr-2: #1a1f3a;
+    --eldr: #c1461b;
+    --eldr-2: #120d0a;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -44,10 +100,17 @@
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 900px; margin: 0 auto; padding: 0 1.25rem; }
-  header { padding: 5rem 0 3rem; text-align: center; }
+  .topline {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; justify-content: center;
+    padding: 1.4rem 0 0; font-size: 0.88rem;
+  }
+  .topline a { color: var(--muted); text-decoration: none; }
+  .topline a:hover { color: var(--fg); text-decoration: underline; }
+  .topline .here { color: var(--fg); font-weight: 600; }
+  header { padding: 2.4rem 0 2.6rem; text-align: center; }
   header h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.02em; }
-  header p { color: var(--muted); max-width: 34em; margin: 1rem auto 0; font-size: 1.1rem; }
-  .apps { display: grid; gap: 1.5rem; padding-bottom: 4rem; }
+  header p { color: var(--muted); max-width: 36em; margin: 1rem auto 0; font-size: 1.08rem; }
+  .apps { display: grid; gap: 1.5rem; padding-bottom: 3.5rem; }
   @media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } }
   .app-card {
     display: block; text-decoration: none; color: inherit;
@@ -58,14 +121,19 @@
   .app-icon {
     width: 64px; height: 64px; border-radius: 15px; margin-bottom: 1.1rem;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.9rem; font-weight: 700; color: #fff;
+    overflow: hidden; flex: none;
   }
+  .app-icon img, .app-icon svg { width: 100%; height: 100%; display: block; }
+  .app-icon svg { padding: 12px; }
+  .gallows .app-icon { background: #0f1813; }
+  .gallows .app-icon img { object-fit: cover; }
   .schlr .app-icon { background: linear-gradient(135deg, var(--schlr), var(--schlr-2)); }
+  .schlr .app-icon svg { fill: none; stroke: #fff; stroke-width: 1.7; }
   .triviant .app-icon { background: linear-gradient(135deg, var(--triviant), var(--triviant-2)); }
-  .gallows .app-icon { background: linear-gradient(135deg, var(--gallows), var(--gallows-2)); font-size: 1.5rem; }
-  .yokel .app-icon { background: linear-gradient(135deg, var(--yokel), var(--yokel-2)); }
-  .mosis .app-icon { background: linear-gradient(135deg, var(--mosis), var(--mosis-2)); color: #0e1614; }
-  .eldr .app-icon { background: linear-gradient(135deg, var(--eldr), var(--eldr-2)); }
+  .triviant .app-icon svg { fill: #fff; }
+  .yokel .app-icon { background: var(--yokel-2); }
+  .mosis .app-icon { background: var(--mosis-2); }
+  .eldr .app-icon { background: var(--eldr-2); }
   .app-card h2 { font-size: 1.4rem; letter-spacing: -0.01em; }
   .app-card .tag { color: var(--muted); font-size: 0.95rem; margin: 0.15rem 0 0.75rem; }
   .app-card p.blurb { font-size: 0.98rem; }
@@ -75,11 +143,10 @@
   .gallows .go { color: var(--gallows); }
   .yokel .go { color: var(--yokel-2); }
   .mosis .go { color: #4a7a12; }
-  .eldr .go { color: var(--eldr-2); }
+  .eldr .go { color: var(--eldr); }
   @media (prefers-color-scheme: dark) {
     .yokel .go { color: var(--yokel); }
     .mosis .go { color: var(--mosis); }
-    .eldr .go { color: var(--eldr); }
   }
   .status {
     display: inline-block; margin-left: 0.5rem; font-size: 0.72rem; font-weight: 600;
@@ -91,64 +158,114 @@
     padding: 2.5rem 0; text-align: center; color: var(--muted); font-size: 1rem;
   }
   .ethos strong { color: var(--fg); }
-  footer { padding: 2.5rem 0 3.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+  .elsewhere { padding: 2.4rem 0 0; text-align: center; }
+  .elsewhere h2 { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 0.9rem; }
+  .elsewhere ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem 1.25rem; }
+  .elsewhere a { color: var(--fg); text-decoration: none; font-weight: 500; }
+  .elsewhere a:hover { text-decoration: underline; }
+  .elsewhere .note { display: block; margin-top: 0.35rem; font-size: 0.85rem; color: var(--muted); font-weight: 400; }
+  footer { padding: 2.2rem 0 3.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
   footer a { color: inherit; }
+  footer .who { color: var(--fg); font-weight: 600; margin-bottom: 0.35rem; }
+  footer .who a { color: inherit; text-decoration: none; }
+  footer .who a:hover { text-decoration: underline; }
+  footer nav { margin: 0.6rem 0; }
+  footer nav a { margin: 0 0.4rem; }
 </style>
 </head>
 <body>
 
 <div class="wrap">
+  <nav class="topline" aria-label="Auston LeRoy">
+    <a href="https://www.auston.org">Auston LeRoy</a>
+    <span class="here" aria-current="page">Apps</span>
+    <a href="https://www.lerants.com">Lerants</a>
+    <a href="https://github.com/SnoobieJunes">GitHub</a>
+  </nav>
+
   <header>
-    <h1>Apps by SnoobieJunes</h1>
-    <p>Small, carefully-made apps and tools. Built by one person (and a very patient AI pair programmer), designed to respect your time and your privacy.</p>
+    <h1>Apps by Auston LeRoy</h1>
+    <p>iPhone games, local-first tools, and a private network for you and your AI. Built in Seattle, one person (and a patient pair of models). Designed to respect your time and your data.</p>
   </header>
 
   <main class="apps">
     <a class="app-card gallows" href="thegallowsway/">
-      <div class="app-icon">&spades;</div>
-      <h2>The Gallows Way <span class="status">On the App Store</span></h2>
+      <div class="app-icon" aria-hidden="true">
+        <img src="thegallowsway/card-back.png" srcset="thegallowsway/card-back.png 1x, thegallowsway/card-back-2x.png 2x" alt="">
+      </div>
+      <h2>The Gallow's Way <span class="status">On the App Store</span></h2>
       <p class="tag">A card game of wit, strategy, and a bit of luck.</p>
-      <p class="blurb">The one that started it — our family card game, brought to iOS. Easy to learn, cutthroat to master.</p>
+      <p class="blurb">Classic Rummy with a twist: every round the wilds, the hand size, and the player order change like the tides. Solo vs AI, pass-and-play, local Wi-Fi, or Game Center. Buy once. No ads, no IAP, no tracking.</p>
       <span class="go">Visit the site &rarr;</span>
     </a>
 
     <a class="app-card schlr" href="schlr/">
-      <div class="app-icon">S</div>
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32">
+          <circle cx="16" cy="16" r="10.5"/>
+          <circle cx="16" cy="16" r="6"/>
+          <circle cx="16" cy="16" r="2.2" fill="#fff" stroke="none"/>
+        </svg>
+      </div>
       <h2>Schlr <span class="status">TestFlight soon</span></h2>
       <p class="tag">Learn anything, at exactly your level.</p>
-      <p class="blurb">Type any topic and get an adaptive, fact-checked quiz that calibrates to your actual ability — then fall down a rabbit hole of lessons and related topics.</p>
+      <p class="blurb">Type a topic — any topic — and Schlr quizzes you on it. It figures out what you know, keeps the questions at the edge of it, and fact-checks every item before you see it.</p>
       <span class="go">Learn more &rarr;</span>
     </a>
 
     <a class="app-card triviant" href="triviant/">
-      <div class="app-icon">T</div>
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32">
+          <path d="M7 9.5 L16 16 L7 22.5 Z"/>
+          <path d="M25 9.5 L16 16 L25 22.5 Z" opacity=".85"/>
+        </svg>
+      </div>
       <h2>Triviant <span class="status">TestFlight soon</span></h2>
-      <p class="tag">Trivia with the people in the room — or across it.</p>
-      <p class="blurb">Ranked 1-on-1 online matches, in-person trivia nights over local Wi-Fi with a room code, and multi-round tournaments. Same engine as Schlr, sharper elbows.</p>
+      <p class="tag">Trivia with teeth.</p>
+      <p class="blurb">Ranked 1-on-1 duels online. Trivia nights with the phones already in the room — no internet required. Tournaments when it gets serious. Same fact-checked engine as Schlr.</p>
       <span class="go">Learn more &rarr;</span>
     </a>
 
     <a class="app-card yokel" href="local-yokel/">
-      <div class="app-icon">Y</div>
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" style="padding:0">
+          <rect width="32" height="32" rx="15" fill="#0c0c0b"/>
+          <path fill="#d8d3c8" d="M8 22h16v2H8zm2-3h12l-1.2-9H11.2zm3.2-11h5.6l.6 2h-6.8z"/>
+        </svg>
+      </div>
       <h2>Local Yokel</h2>
-      <p class="tag">When a local box recoups against frontier API prices.</p>
-      <p class="blurb">Pick a box, pick a model, see which desk machine recoups against Opus 5. Qwen3.8-27B and the rest of the open-weight frontier, on hardware you actually own.</p>
+      <p class="tag">A cost-driven analysis tool for local AI and its ROI.</p>
+      <p class="blurb">Find the sweet spot between desk hardware and frontier API spend. Qwen3.8-27B and other open-weight models versus Opus 5 — which box recoups first.</p>
       <span class="go">Open the calculator &rarr;</span>
     </a>
 
     <a class="app-card mosis" href="mosis/">
-      <div class="app-icon">M</div>
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 22 22">
+          <g fill="#7f948e">
+            <rect x="1" y="6" width="20" height="1"/>
+            <rect x="1" y="10" width="20" height="2"/>
+            <rect x="1" y="15" width="20" height="1"/>
+          </g>
+          <rect x="12" y="9" width="5" height="4" fill="#b8ff2e"/>
+        </svg>
+      </div>
       <h2>MOSIS</h2>
       <p class="tag">Your devices, talking directly. No cloud in the path.</p>
-      <p class="blurb">Pair once with a code and a word pair. After that, files, clipboard, input and screens move over a pinned mutual-TLS link on your own network. No account, no relay.</p>
+      <p class="blurb">Pair once with a 6-digit code and a word pair. After that, files, clipboard, input and screens move over a pinned mutual-TLS link on your own network. No account, no relay.</p>
       <span class="go">Open the site &rarr;</span>
     </a>
 
     <a class="app-card eldr" href="eldr/">
-      <div class="app-icon">E</div>
+      <div class="app-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="#f0e7dc">
+          <path d="M8 0l2 2.6 3.2.5.5 3.2L16 8l-2.3 1.7-.5 3.2-3.2.5L8 16l-2-2.6-3.2-.5-.5-3.2L0 8l2.3-1.7.5-3.2 3.2-.5z"/>
+          <path d="M6.9 10.7L4.6 8.4l1-1 1.3 1.3 3.4-3.4 1 1z" fill="#c1461b"/>
+        </svg>
+      </div>
       <h2>Eldr</h2>
       <p class="tag">The private network for you and your AI.</p>
-      <p class="blurb">Post-quantum, end-to-end encrypted messenger over Nostr, built for conversations between people and their AI.</p>
+      <p class="blurb">Your AI in the conversation. The transcript yours alone. Post-quantum, end-to-end encrypted messenger over Nostr — a human at the helm, an agent only when you grant it.</p>
       <span class="go">Open the site &rarr;</span>
     </a>
   </main>
@@ -157,10 +274,46 @@
     <p><strong>The house rules, for every app here:</strong> no accounts, no ads, no analytics, no tracking. Your data stays yours.</p>
   </div>
 
+  <section class="elsewhere" aria-labelledby="elsewhere-h">
+    <h2 id="elsewhere-h">Elsewhere</h2>
+    <ul>
+      <li>
+        <a href="https://www.auston.org">auston.org</a>
+        <span class="note">Home</span>
+      </li>
+      <li>
+        <a href="https://www.lerants.com">Lerants</a>
+        <span class="note">The soapbox</span>
+      </li>
+      <li>
+        <a href="https://github.com/SnoobieJunes">GitHub</a>
+        <span class="note">Source</span>
+      </li>
+      <li>
+        <a href="https://x.com/austonion">@austonion</a>
+        <span class="note">On X</span>
+      </li>
+      <li>
+        <a href="https://github.com/SnoobieJunes/Prospectra">Prospectra</a>
+        <span class="note">Your data buddy</span>
+      </li>
+    </ul>
+  </section>
+
   <footer>
+    <p class="who"><a href="https://www.auston.org">Auston LeRoy</a></p>
+    <nav aria-label="Auston elsewhere">
+      <a href="https://www.auston.org">auston.org</a> ·
+      <a href="https://www.lerants.com">lerants.com</a> ·
+      <a href="https://github.com/SnoobieJunes">GitHub</a> ·
+      <a href="https://x.com/austonion">X</a>
+    </nav>
     <p>Questions or trouble? <a href="mailto:leroy@auston.org">leroy@auston.org</a></p>
-    <p>&copy; 2026 SnoobieJunes</p>
-    · <a href="privacy/">Privacy Policy</a> · <a href="support/">Support</a>
+    <p>
+      <a href="privacy/">Privacy Policy</a> ·
+      <a href="support/">Support</a>
+    </p>
+    <p>&copy; 2026 Auston LeRoy</p>
   </footer>
 </div>
 
