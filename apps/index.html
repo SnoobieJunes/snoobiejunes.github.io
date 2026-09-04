@@ -19,6 +19,8 @@
     --triviant-2: #581c87;
     --gallows: #7a6a52;
     --gallows-2: #4a3f30;
+    --yokel: #a89880;
+    --yokel-2: #1a1814;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -57,6 +59,7 @@
   .schlr .app-icon { background: linear-gradient(135deg, var(--schlr), var(--schlr-2)); }
   .triviant .app-icon { background: linear-gradient(135deg, var(--triviant), var(--triviant-2)); }
   .gallows .app-icon { background: linear-gradient(135deg, var(--gallows), var(--gallows-2)); font-size: 1.5rem; }
+  .yokel .app-icon { background: linear-gradient(135deg, var(--yokel), var(--yokel-2)); }
   .app-card h2 { font-size: 1.4rem; letter-spacing: -0.01em; }
   .app-card .tag { color: var(--muted); font-size: 0.95rem; margin: 0.15rem 0 0.75rem; }
   .app-card p.blurb { font-size: 0.98rem; }
@@ -64,6 +67,8 @@
   .schlr .go { color: var(--schlr); }
   .triviant .go { color: var(--triviant); }
   .gallows .go { color: var(--gallows); }
+  .yokel .go { color: var(--yokel-2); }
+  @media (prefers-color-scheme: dark) { .yokel .go { color: var(--yokel); } }
   .status {
     display: inline-block; margin-left: 0.5rem; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
@@ -101,6 +106,15 @@
       <p class="tag">Trivia with the people in the room — or across it.</p>
       <p class="blurb">Ranked 1-on-1 online matches, in-person trivia nights over local Wi-Fi with a room code, and multi-round tournaments. Same engine as Schlr, sharper elbows.</p>
       <span class="go">Learn more &rarr;</span>
+    </a>
+
+
+    <a class="app-card yokel" href="local-yokel/">
+      <div class="app-icon">Y</div>
+      <h2>Local Yokel</h2>
+      <p class="tag">When a local box recoups against frontier API prices.</p>
+      <p class="blurb">Pick a box, pick a model, see which desk machine recoups against Opus 5. Qwen3.8-27B and the rest of the open-weight frontier, on hardware you actually own.</p>
+      <span class="go">Open the calculator &rarr;</span>
     </a>
 
     <a class="app-card gallows" href="https://snoobiejunes.github.io">
