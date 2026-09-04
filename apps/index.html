@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apps by SnoobieJunes</title>
-<meta name="description" content="Small, honest iOS apps. No accounts, no ads, no tracking.">
+<meta name="description" content="Small, honest apps. No accounts, no ads, no tracking.">
 <style>
   :root {
     color-scheme: light dark;
@@ -21,6 +21,10 @@
     --gallows-2: #4a3f30;
     --yokel: #a89880;
     --yokel-2: #1a1814;
+    --mosis: #7fc21e;
+    --mosis-2: #0e1614;
+    --eldr: #6d8cff;
+    --eldr-2: #1a1f3a;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -44,7 +48,7 @@
   header h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.02em; }
   header p { color: var(--muted); max-width: 34em; margin: 1rem auto 0; font-size: 1.1rem; }
   .apps { display: grid; gap: 1.5rem; padding-bottom: 4rem; }
-  @media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } .apps .gallows { grid-column: 1 / -1; } }
+  @media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } }
   .app-card {
     display: block; text-decoration: none; color: inherit;
     background: var(--card); border: 1px solid var(--border);
@@ -60,6 +64,8 @@
   .triviant .app-icon { background: linear-gradient(135deg, var(--triviant), var(--triviant-2)); }
   .gallows .app-icon { background: linear-gradient(135deg, var(--gallows), var(--gallows-2)); font-size: 1.5rem; }
   .yokel .app-icon { background: linear-gradient(135deg, var(--yokel), var(--yokel-2)); }
+  .mosis .app-icon { background: linear-gradient(135deg, var(--mosis), var(--mosis-2)); color: #0e1614; }
+  .eldr .app-icon { background: linear-gradient(135deg, var(--eldr), var(--eldr-2)); }
   .app-card h2 { font-size: 1.4rem; letter-spacing: -0.01em; }
   .app-card .tag { color: var(--muted); font-size: 0.95rem; margin: 0.15rem 0 0.75rem; }
   .app-card p.blurb { font-size: 0.98rem; }
@@ -68,7 +74,13 @@
   .triviant .go { color: var(--triviant); }
   .gallows .go { color: var(--gallows); }
   .yokel .go { color: var(--yokel-2); }
-  @media (prefers-color-scheme: dark) { .yokel .go { color: var(--yokel); } }
+  .mosis .go { color: #4a7a12; }
+  .eldr .go { color: var(--eldr-2); }
+  @media (prefers-color-scheme: dark) {
+    .yokel .go { color: var(--yokel); }
+    .mosis .go { color: var(--mosis); }
+    .eldr .go { color: var(--eldr); }
+  }
   .status {
     display: inline-block; margin-left: 0.5rem; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
@@ -88,10 +100,18 @@
 <div class="wrap">
   <header>
     <h1>Apps by SnoobieJunes</h1>
-    <p>Small, carefully-made iOS apps. Built by one person (and a very patient AI pair programmer), designed to respect your time and your privacy.</p>
+    <p>Small, carefully-made apps and tools. Built by one person (and a very patient AI pair programmer), designed to respect your time and your privacy.</p>
   </header>
 
   <main class="apps">
+    <a class="app-card gallows" href="thegallowsway/">
+      <div class="app-icon">&spades;</div>
+      <h2>The Gallows Way <span class="status">On the App Store</span></h2>
+      <p class="tag">A card game of wit, strategy, and a bit of luck.</p>
+      <p class="blurb">The one that started it — our family card game, brought to iOS. Easy to learn, cutthroat to master.</p>
+      <span class="go">Visit the site &rarr;</span>
+    </a>
+
     <a class="app-card schlr" href="schlr/">
       <div class="app-icon">S</div>
       <h2>Schlr <span class="status">TestFlight soon</span></h2>
@@ -108,7 +128,6 @@
       <span class="go">Learn more &rarr;</span>
     </a>
 
-
     <a class="app-card yokel" href="local-yokel/">
       <div class="app-icon">Y</div>
       <h2>Local Yokel</h2>
@@ -117,12 +136,20 @@
       <span class="go">Open the calculator &rarr;</span>
     </a>
 
-    <a class="app-card gallows" href="https://snoobiejunes.github.io">
-      <div class="app-icon">&spades;</div>
-      <h2>The Gallow's Way <span class="status">On the App Store</span></h2>
-      <p class="tag">A card game of wit, strategy, and a bit of luck.</p>
-      <p class="blurb">The one that started it — our family card game, brought to iOS. Easy to learn, cutthroat to master.</p>
-      <span class="go">Visit the site &rarr;</span>
+    <a class="app-card mosis" href="mosis/">
+      <div class="app-icon">M</div>
+      <h2>MOSIS</h2>
+      <p class="tag">Your devices, talking directly. No cloud in the path.</p>
+      <p class="blurb">Pair once with a code and a word pair. After that, files, clipboard, input and screens move over a pinned mutual-TLS link on your own network. No account, no relay.</p>
+      <span class="go">Open the site &rarr;</span>
+    </a>
+
+    <a class="app-card eldr" href="eldr/">
+      <div class="app-icon">E</div>
+      <h2>Eldr</h2>
+      <p class="tag">The private network for you and your AI.</p>
+      <p class="blurb">Post-quantum, end-to-end encrypted messenger over Nostr, built for conversations between people and their AI.</p>
+      <span class="go">Open the site &rarr;</span>
     </a>
   </main>
 
